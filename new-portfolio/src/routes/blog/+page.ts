@@ -1,7 +1,7 @@
 import type { PageLoad } from './$types';
-import { posts } from '$lib/blog-data';
-
+import { getBlog } from './data.remote';
 export const load: PageLoad = () => {
+    const posts = getBlog()
 	return {
 		posts
 	};

@@ -3,10 +3,18 @@ import { db } from '$lib/server/db';
 import { eq } from 'drizzle-orm';
 import { blog } from '$lib/server/db/schema';
 import type { RequestHandler } from './$types';
-import { request } from 'http';
-import { error } from 'console';
+import { SECRET_CODE } from '$env/static/private';
 
 export const POST: RequestHandler = async ({ request }) => {
+    const custom = request.headers.get('Jemo')
+    // const Sercetcode = env.SECRET_CODE
+    const Sercetcode = SECRET_CODE
+    if (!custom){
+        return json({error : "not authencated something"}, {status : 401})
+    }
+    if (custom != Sercetcode){
+        return json({error : "not authencated", "custom":custom , "code":Sercetcode}, {status : 401})
+    }
 	const { title, slug, content } = await request.json();
 
 	if (!title || !slug || !content) {
@@ -22,6 +30,16 @@ export const POST: RequestHandler = async ({ request }) => {
 };
 
 export const DELETE  : RequestHandler = async ({request}) => { 
+
+    const custom = request.headers.get('Jemo')
+    // const Sercetcode = env.SECRET_CODE
+    const Sercetcode = SECRET_CODE
+    if (!custom){
+        return json({error : "not authencated something"}, {status : 401})
+    }
+    if (custom != Sercetcode){
+        return json({error : "not authencated", "custom":custom , "code":Sercetcode}, {status : 401})
+    }
 const { slug } = await request.json();
     if ( !slug ){
         return json({error : 'Not found '}, { status: 400})
