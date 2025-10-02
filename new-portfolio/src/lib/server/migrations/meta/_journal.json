@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1759370589684,
+      "tag": "0000_powerful_roulette",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1759380720769,
+      "tag": "0001_tiny_havok",
+      "breakpoints": true
+    }
+  ]
+}

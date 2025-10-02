@@ -6,11 +6,8 @@ export const user = sqliteTable('user', {
     password : text("password").notNull()
 });
 export const blog = sqliteTable('blog' , {
-
-    id : integer('id'), 
     title : text('title'),
     slug : text('slug').unique().notNull(),
-    cotent : text('content'),
-    
+    content : text('content'),
     }
 )

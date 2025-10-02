@@ -12,24 +12,6 @@
 </script>
 
 <main class="bg-background-950 p-4 text-text-50 md:p-8">
-	<h1 class="mb-8 text-4xl font-bold">Component Library</h1>
-
-	<section class="mb-8 bg-background-950">
-		<h2 class="mb-4 text-2xl font-bold">Card</h2>
-		<Card>This is a card component.</Card>
-	</section>
-
-	<section class="mb-8">
-		<h2 class="mb-4 text-2xl font-bold">Button</h2>
-		<Button>Click Me</Button>
-	</section>
-
-	<section class="mb-8">
-		<h2 class="mb-4 text-2xl font-bold">Blog Card</h2>
-		<div class="max-w-md">
-			<BlogCard post={fakePost} />
-		</div>
-	</section>
 </main>
 
 <style>
