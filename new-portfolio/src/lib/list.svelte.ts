@@ -34,3 +34,11 @@
 		'django',
 		'fastapi'
 	]);
+
+	export const experiences = [
+		{
+			title: 'senior hackathon',
+			timeline: 'the company of companing',
+			description: 'the something ok for what'
+		}
+	];
