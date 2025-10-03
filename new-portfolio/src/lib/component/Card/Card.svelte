@@ -2,11 +2,20 @@
 	let { children } = $props();
 </script>
 
-<div class="m-2 rounded-lg border-2 border-secondary-500 bg-primary-900 p-1 shadow-lg">
-	<div class="bg-background/80 p-4">
-		<div class="border-y-2 border-dashed border-primary-500 py-4 text-text-500">
-			{@render children?.()}
-		</div>
-	</div>
+<div class="card rounded-2xl elevation-2">
+	{@render children?.()}
 </div>
 
+<style>
+	.card {
+		background-color: var(--color-surface-1);
+		padding: 1.5rem; /* 24px */
+		margin: 0.5rem; /* 8px */
+		transition: transform 0.2s var(--transition-standard), box-shadow 0.2s var(--transition-standard);
+	}
+
+	.card:hover {
+		transform: translateY(-4px) scale(1.02);
+		box-shadow: var(--shadow-3);
+	}
+</style>

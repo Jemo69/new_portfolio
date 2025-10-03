@@ -5,6 +5,9 @@
 	const BlogPosts = getBlog();
 </script>
 
+<svelte:head>
+	<title>Jemo blog</title>
+</svelte:head>
 <div class="h-screen">
 	{#await BlogPosts}
 		<p class="text-2xl font-extrabold text-accent-500">the post are loading</p>

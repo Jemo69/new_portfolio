@@ -2,39 +2,64 @@
 	import { page } from '$app/stores';
 </script>
 
-<nav
-	class="flex items-center justify-between border-b-2 border-primary-900 bg-background-800 p-4 md:px-8"
->
-	<a href="/" class="text-2xl font-bold text-accent-200">JEMO</a>
-	<ul class="flex items-center gap-4 text-text-500 md:gap-8">
+<nav class="navbar liquid-glass elevation-4">
+	<a href="/" class="logo">JEMO</a>
+	<ul class="links">
 		<li>
-			<a
-				href="/about"
-				class="pb-1 font-semibold uppercase {String($page.url.pathname) === '/about'
-					? 'border-foreground border-b-2'
-					: ''}">About</a
-			>
+			<a href="/about" class:active={String($page.url.pathname) === '/about'}>About</a>
 		</li>
 		<li>
-			<a
-				href="/blog"
-				class="pb-1 font-semibold uppercase {$page.url.pathname.startsWith('/blog')
-					? 'border-foreground border-b-2'
-					: ''}">Blog</a
-			>
+			<a href="/blog" class:active={$page.url.pathname.startsWith('/blog')}>Blog</a>
 		</li>
 		<li>
-			<a
-				href="/contact"
-				class="pb-1 font-semibold uppercase {String($page.url.pathname) === '/contact'
-					? 'border-foreground border-b-2'
-					: ''}">Contact</a
-			>
+			<a href="/contact" class:active={String($page.url.pathname) === '/contact'}>Contact</a>
 		</li>
 	</ul>
 </nav>
 
 <style>
-	@reference 'tailwindcss';
-</style>
+	.navbar {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 2rem; /* 16px 32px */
+	}
 
+	.logo {
+		font-size: 1.75rem; /* 28px */
+		font-weight: 700;
+		color: var(--color-text-accent);
+        text-decoration: none;
+	}
+
+	.links {
+		display: flex;
+		align-items: center;
+		gap: 2rem; /* 32px */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+	}
+
+	.links a {
+		padding: 0.5rem 0; /* 8px 0 */
+		font-weight: 600;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: var(--color-text-muted);
+		transition: color 0.2s var(--transition-standard);
+        border-bottom: 2px solid transparent;
+	}
+
+	.links a:hover {
+		color: var(--color-text-main);
+	}
+
+    .links a.active {
+        color: var(--color-text-main);
+        border-bottom-color: var(--color-brand-accent);
+    }
+</style>

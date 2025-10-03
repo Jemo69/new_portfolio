@@ -6,13 +6,13 @@
 		blog: {
 			slug: string;
 			title: string;
-			content: string;
+			content: string; // This is not used in the template, but I'll leave it.
 		};
 	}>();
 </script>
 
 <Card>
-	<article>
+	<article class="blog-card-content">
 		<h2>{blog.title}</h2>
 		<a href={`/blog/${blog.slug}`}>
 			<Button>Read More</Button>
@@ -21,15 +21,22 @@
 </Card>
 
 <style>
+    .blog-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* 16px */
+    }
+
 	h2 {
 		margin-top: 0;
-		font-size: 1.5rem;
+		font-size: 1.5rem; /* 24px */
+        font-weight: 600;
+        color: var(--color-text-main);
+        margin-bottom: 0.5rem; /* 8px */
 	}
-	p {
-		margin-bottom: 1.5rem;
-	}
+
 	a {
 		text-decoration: none;
+        align-self: flex-start; /* Prevent button from stretching */
 	}
 </style>
-

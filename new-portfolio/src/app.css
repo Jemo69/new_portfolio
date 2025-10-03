@@ -1,3 +1,4 @@
+
 /* app.css or theme.css */
 
 @import "tailwindcss";
@@ -69,6 +70,69 @@
   --color-accent-950: #0e0317;
 }
 
-body{
-    background-color:#031617 ;
+:root {
+    /* Adaptive Materiality Design Tokens */
+
+    /* 1. Typography */
+    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+    /* 2. Color System (Semantic Mapping) */
+    /* Using existing palette and mapping to semantic roles */
+    --color-text-main: var(--color-text-100);
+    --color-text-muted: var(--color-text-300);
+    --color-text-accent: var(--color-primary-400);
+
+    --color-surface-0: var(--color-background-950); /* Base Background */
+    --color-surface-1: var(--color-background-900); /* Opaque Tonal Surface L+1 */
+    --color-surface-2: var(--color-background-800); /* Opaque Tonal Surface L+2 */
+    --color-surface-3: var(--color-background-700); /* Opaque Tonal Surface L+3 */
+
+    /* Functional Layer (Liquid Glass) */
+    --color-surface-4-rgb: 11, 88, 91; /* from --color-background-800 */
+    --color-surface-4: rgba(var(--color-surface-4-rgb), 0.7); /* L+4 */
+    --color-surface-5-rgb: 5, 46, 46; /* from --color-text-900 */
+    --color-surface-5: rgba(var(--color-surface-5-rgb), 0.7); /* L+5 */
+
+    --color-brand-primary: var(--color-primary-500);
+    --color-brand-secondary: var(--color-secondary-500);
+    --color-brand-accent: var(--color-accent-500);
+
+    /* 3. Elevation & Shadow */
+    /* Sharp shadows for close elements */
+    --shadow-1: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-2: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.18);
+    --shadow-3: 0 6px 10px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.2);
+    /* Diffuse shadows for distant elements */
+    --shadow-4: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-5: 0 15px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+    /* 4. Motion */
+    --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* Approximates overshoot */
+    --transition-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
+
+body {
+    background-color: var(--color-surface-0);
+    font-family: var(--font-family-base);
+    color: var(--color-text-main);
+}
+
+/* 5. Shape (Squircle) */
+.squircle {
+    clip-path: url(#squircleClip);
+}
+
+/* Utility classes for elevation */
+.elevation-1 { box-shadow: var(--shadow-1); }
+.elevation-2 { box-shadow: var(--shadow-2); }
+.elevation-3 { box-shadow: var(--shadow-3); }
+.elevation-4 { box-shadow: var(--shadow-4); }
+.elevation-5 { box-shadow: var(--shadow-5); }
+
+/* Theming for Functional Layer (Navbar/Header) */
+.liquid-glass {
+    background-color: var(--color-surface-4);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
