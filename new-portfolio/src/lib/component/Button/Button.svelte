@@ -1,12 +1,18 @@
 <script lang="ts">
-	let { children, onclick, variant = 'primary' } = $props<{
+	let {
+		children,
+		onclick,
+		variant = 'primary',
+		type
+	} = $props<{
 		children: any;
-		onclick?: (event: MouseEvent) => void;
+		onclick?: any;
 		variant?: 'primary' | 'secondary';
+		type?: string;
 	}>();
 </script>
 
-<button {onclick} class="button squircle elevation-1 {variant}">
+<button {onclick} class="button squircle elevation-1 {variant}" {type}>
 	<span>{@render children?.()}</span>
 </button>
 
@@ -16,29 +22,32 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		transition: transform 0.15s var(--transition-spring), box-shadow 0.15s var(--transition-spring);
+		transition:
+			transform 0.15s var(--transition-spring),
+			box-shadow 0.15s var(--transition-spring);
 		will-change: transform, box-shadow;
-        cursor: pointer;
+		cursor: pointer;
 	}
 
-    .button:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-2);
-    }
+	.button:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-2);
+	}
 
-    .button:active {
-        transform: translateY(0px);
-        box-shadow: var(--shadow-1);
-    }
+	.button:active {
+		transform: translateY(0px);
+		box-shadow: var(--shadow-1);
+	}
 
-    /* Variants */
-    .primary {
-        background-color: var(--color-brand-primary);
-        color: var(--color-background-950); /* High contrast for primary action */
-    }
+	/* Variants */
+	.primary {
+		background-color: var(--color-brand-primary);
+		color: var(--color-background-950); /* High contrast for primary action */
+	}
 
-    .secondary {
-        background-color: var(--color-brand-secondary);
-        color: var(--color-text-50);
-    }
+	.secondary {
+		background-color: var(--color-brand-secondary);
+		color: var(--color-text-50);
+	}
 </style>
+
