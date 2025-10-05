@@ -86,24 +86,25 @@ function toGithubApiContentsUrl(rawUrl: string): string | null {
   }
 }
 
-function parseFilenameFromUrlOrHeader(urlStr: string, contentDisposition: string | null): string {
-  if (contentDisposition) {
-    const match = /filename\*=UTF-8''([^;]+)|filename="?([^"]+)"?/i.exec(contentDisposition);
-    if (match) {
-      return decodeURIComponent(match[1] || match[2]);
-    }
-  }
-  try {
-    const u = new URL(urlStr);
-    const last = u.pathname.split("/").filter(Boolean).pop();
-    if (last) return last;
-  } catch {
-    // ignore
-  }
-  return "download.bin";
-}
+// function parseFilenameFromUrlOrHeader(urlStr: string, contentDisposition: string | null): string { if (contentDisposition) {
+//     const match = /filename\*=UTF-8''([^;]+)|filename="?([^"]+)"?/i.exec(contentDisposition);
+//     if (match) {
+//       return decodeURIComponent(match[1] || match[2]);
+//     }
+//   }
+//   try {
+//     const u = new URL(urlStr);
+//     const last = u.pathname.split("/").filter(Boolean).pop();
+//     if (last) return last;
+//   } catch {
+//     // ignore
+//   }
+//   return "download.bin";
+// }
 
 export const DownloadResume = command(async (): Promise<DownloadResumeResult> => {
+let arrayBuffer = null
+  let uint8 = null
   const token = env.GITHUB_PRIVATE_TOKEN;
   const rawUrl = env.SOURCE_RESUME;
 
@@ -135,12 +136,11 @@ export const DownloadResume = command(async (): Promise<DownloadResumeResult> =>
       };
     }
 
-    const contentDisposition = res.headers.get("content-disposition");
     const contentType = res.headers.get("content-type") ?? "application/octet-stream";
-    const filename = parseFilenameFromUrlOrHeader(rawUrl, contentDisposition);
+    const filename = 'resume.pdf';
 
-    const arrayBuffer = await res.arrayBuffer();
-    const uint8 = new Uint8Array(arrayBuffer);
+     arrayBuffer = await res.arrayBuffer();
+     uint8 = new Uint8Array(arrayBuffer);
 
     return {
       ok: true,
