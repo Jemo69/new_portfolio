@@ -5,6 +5,26 @@ import { blog } from '$lib/server/db/schema';
 import type { RequestHandler } from './$types';
 import { SECRET_CODE } from '$env/static/private';
 
+export const GET: RequestHandler = async ({ request }) => {
+
+    const custom = request.headers.get('Jemo')
+    // const Sercetcode = env.SECRET_CODE
+    const Sercetcode = SECRET_CODE
+    if (!custom){
+        return json({error : "not authencated something"}, {status : 401})
+    }
+    if (custom != Sercetcode){
+        return json({error : "not authencated", "custom":custom , "code":Sercetcode}, {status : 401})
+    }
+
+	try {
+		const blogPost = await db.select().from(blog);
+		return json(blogPost , { status: 200 });
+	} catch (error) {
+		return json({ error: 'Failed to fetch blog post' }, { status: 500 });
+	}
+};
+
 export const POST: RequestHandler = async ({ request }) => {
     const custom = request.headers.get('Jemo')
     // const Sercetcode = env.SECRET_CODE
