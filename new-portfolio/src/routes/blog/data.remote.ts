@@ -5,6 +5,7 @@ import  { z } from 'zod'
 import { eq } from "drizzle-orm";
 
 
+
 export const getBlog = query(async()=>{
     const BlogPosts = await db.select().from(blog)
     return BlogPosts
