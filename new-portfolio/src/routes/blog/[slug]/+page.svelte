@@ -3,25 +3,51 @@
 		title: string;
 		content: string;
 		slug: string;
+		views: number;
 	}
 	let { data } = $props<{
 		data: {
 			post?: PostType;
 		};
 	}>();
-	console.log(data.post);
-	const blogpost = data.post[0];
+
+	const blogpost = $derived(data.post);
+
+	function processContent(content: string) {
+		if (!content) return '';
+		// If it contains HTML tags, treat as HTML
+		if (/<[a-z][\s\S]*>/i.test(content)) {
+			return content;
+		}
+		// Otherwise, convert line breaks to <br>
+		return content.replace(/\n/g, '<br />');
+	}
 </script>
 
 <svelte:head>
-	<title>{blogpost.title}</title>
+	{#if blogpost}
+		<title>{blogpost.title}</title>
+	{/if}
 </svelte:head>
+
 {#if blogpost}
-	<article>
-		<h1 class="p-5 text-3xl font-black text-accent-500">{blogpost.title}</h1>
-		<div class="p-5 text-lg text-text-50">{@html blogpost.content}</div>
+	<article class="max-w-4xl mx-auto p-6">
+		<header class="mb-12 border-b-2 border-stark-white pb-6">
+			<div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 mb-4">
+				<div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+				<span>Transmission Unit: {blogpost.views || 0}</span>
+			</div>
+			<h1 class="text-5xl font-black text-stark-white uppercase tracking-tighter leading-none">{blogpost.title}</h1>
+		</header>
+		
+		<div class="prose prose-invert max-w-none text-lg leading-relaxed text-gray-300 font-medium">
+			{@html processContent(blogpost.content)}
+		</div>
 	</article>
 {:else}
-	<p>there was an error loading the file</p>
+	<div class="flex flex-col items-center justify-center min-h-[50vh]">
+		<p class="text-xl font-bold text-red-500">There was an error loading the blog post.</p>
+		<a href="/blog" class="mt-4 text-accent-500 hover:underline">Back to Blog</a>
+	</div>
 {/if}
 

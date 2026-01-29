@@ -2,64 +2,26 @@
 	import { page } from '$app/stores';
 </script>
 
-<nav class="navbar liquid-glass elevation-4">
-	<a href="/" class="logo">JEMO</a>
-	<ul class="links">
+<nav class="sticky top-0 z-50 flex items-center justify-between px-8 py-4 bg-onyx border-b-2 border-stark-white">
+	<a href="/" class="text-3xl font-black tracking-tighter text-stark-white no-underline">JEMO</a>
+	<ul class="flex items-center gap-8 list-none p-0 m-0">
 		<li>
-			<a href="/about" class:active={String($page.url.pathname) === '/about'}>About</a>
+			<a href="/about" 
+               class="font-bold uppercase tracking-widest no-underline transition-colors hover:text-gray-400 {String($page.url.pathname) === '/about' ? 'text-stark-white border-b-2 border-stark-white' : 'text-gray-500'}">
+                About
+            </a>
 		</li>
 		<li>
-			<a href="/blog" class:active={$page.url.pathname.startsWith('/blog')}>Blog</a>
+			<a href="/blog" 
+               class="font-bold uppercase tracking-widest no-underline transition-colors hover:text-gray-400 {$page.url.pathname.startsWith('/blog') ? 'text-stark-white border-b-2 border-stark-white' : 'text-gray-500'}">
+                Blog
+            </a>
 		</li>
 		<li>
-			<a href="/contact" class:active={String($page.url.pathname) === '/contact'}>Contact</a>
+			<a href="/contact" 
+               class="font-bold uppercase tracking-widest no-underline transition-colors hover:text-gray-400 {String($page.url.pathname) === '/contact' ? 'text-stark-white border-b-2 border-stark-white' : 'text-gray-500'}">
+                Contact
+            </a>
 		</li>
 	</ul>
 </nav>
-
-<style>
-	.navbar {
-		position: sticky;
-		top: 0;
-		z-index: 10;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 1rem 2rem; /* 16px 32px */
-	}
-
-	.logo {
-		font-size: 1.75rem; /* 28px */
-		font-weight: 700;
-		color: var(--color-text-accent);
-        text-decoration: none;
-	}
-
-	.links {
-		display: flex;
-		align-items: center;
-		gap: 2rem; /* 32px */
-        list-style: none;
-        padding: 0;
-        margin: 0;
-	}
-
-	.links a {
-		padding: 0.5rem 0; /* 8px 0 */
-		font-weight: 600;
-		text-transform: uppercase;
-		text-decoration: none;
-		color: var(--color-text-muted);
-		transition: color 0.2s var(--transition-standard);
-        border-bottom: 2px solid transparent;
-	}
-
-	.links a:hover {
-		color: var(--color-text-main);
-	}
-
-    .links a.active {
-        color: var(--color-text-main);
-        border-bottom-color: var(--color-brand-accent);
-    }
-</style>

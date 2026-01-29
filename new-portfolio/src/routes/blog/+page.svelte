@@ -1,27 +1,28 @@
-<script>
-	import { getBlog } from './data.remote';
+<script lang="ts">
 	import BlogCard from '$lib/component/BlogCard/BlogCard.svelte';
+	
+	let { data } = $props<{
+		data: {
+			posts: any[];
+		}
+	}>();
 
-	const BlogPosts = getBlog();
+	const posts = $derived(data.posts || []);
 </script>
 
 <svelte:head>
-	<title>Jemo blog</title>
+	<title>Blog // JEMO CORE</title>
 </svelte:head>
-<div class="h-screen">
-	{#await BlogPosts}
-		<p class="text-2xl font-extrabold text-accent-500">the post are loading</p>
-	{:then posts}
-		{#if posts.length > 0}
-			<main class="grid grid-cols-3 gap-4">
-				{#each posts as post}
-					<BlogCard blog={post}></BlogCard>
-				{/each}
-			</main>
-		{:else}
-			<p class="">No blog posts found</p>
-		{/if}
-	{:catch error}
-		<p class="text-2xl font-extrabold text-red-500">An error has occured</p>
-	{/await}
-</div>
+
+{#if posts.length > 0}
+	<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+		{#each posts as post}
+			<BlogCard blog={post} />
+		{/each}
+	</div>
+{:else}
+	<div class="border-2 border-dashed border-stark-white p-12 text-center bg-true-black">
+		<p class="text-xl font-black uppercase tracking-[0.3em] text-stark-white">No Blog Post Found</p>
+	</div>
+{/if}
+

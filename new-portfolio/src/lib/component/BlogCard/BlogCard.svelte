@@ -6,37 +6,27 @@
 		blog: {
 			slug: string;
 			title: string;
-			content: string; // This is not used in the template, but I'll leave it.
+			content: string;
+			views: number;
 		};
 	}>();
 </script>
 
 <Card>
-	<article class="blog-card-content">
-		<h2>{blog.title}</h2>
-		<a href={`/blog/${blog.slug}`}>
-			<Button>Read More</Button>
+	<article class="flex flex-col gap-6">
+		<div class="flex flex-col gap-2">
+			<div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]">
+				<div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+				<span class="text-gray-500">DATA TRANSMISSION:</span>
+				<span class="text-stark-white">{blog.views || 0} UNITS</span>
+			</div>
+			<h2 class="m-0 text-2xl font-black uppercase tracking-tight text-stark-white">
+				{blog.title}
+			</h2>
+		</div>
+		
+		<a href={`/blog/${blog.slug}`} class="no-underline self-start">
+			<Button variant="secondary" class="py-2 text-xs">Access Terminal</Button>
 		</a>
 	</article>
 </Card>
-
-<style>
-    .blog-card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem; /* 16px */
-    }
-
-	h2 {
-		margin-top: 0;
-		font-size: 1.5rem; /* 24px */
-        font-weight: 600;
-        color: var(--color-text-main);
-        margin-bottom: 0.5rem; /* 8px */
-	}
-
-	a {
-		text-decoration: none;
-        align-self: flex-start; /* Prevent button from stretching */
-	}
-</style>

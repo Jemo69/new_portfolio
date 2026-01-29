@@ -1,53 +1,76 @@
 <script lang="ts">
-	// Svelte 5 Mandate: Use $props for explicit prop declaration
-	let { errorCode, errorTitle, errorMessage, onNavigateHome } = $props<{
+	/* JEMO CORE Refactor 
+	  Pillars: Binary Contrast, Hard Containment, Softened Industrial
+	*/
+	
+	let { 
+		errorCode = 404, 
+		errorTitle = "ACCESS DENIED", 
+		errorMessage = "The requested coordinate does not exist within the current sector.", 
+		onNavigateHome 
+	} = $props<{
 		errorCode: number;
 		errorTitle: string;
 		errorMessage: string;
-		// Event handling must use function-as-prop pattern
 		onNavigateHome: () => void;
 	}>();
 
-	// Color System Mandate: Static Semantic Color for Error Status
-	const errorColor = 'text-red-500 dark:text-red-400';
-
-	// Protocol 2: Spring Dynamics Simulation for Button Press (Styling)
-	// This class simulates the responsive, tactile spring-back effect.
-	const buttonClasses = 'active:scale-[0.98] transition-transform duration-150 ease-out';
+	// Protocol: No soft shadows or springs. 
+	// The "Jemo Press" is a hard scale-down without blurring.
+	const buttonClasses = 'active:scale-95 transition-all duration-75 ease-linear';
 </script>
 
 <div
-	class="flex min-h-screen items-center justify-center bg-neutral-50 px-4 sm:px-8 dark:bg-gray-900"
+	class="flex min-h-[80vh] items-center justify-center bg-onyx px-4 font-sans"
 >
 	<div
-		class="flex w-full max-w-md flex-col items-center
-           space-y-6 rounded-3xl bg-white
-           p-8 text-center shadow-lg sm:p-10 dark:bg-gray-800"
+		class="flex w-full max-w-lg flex-col
+           border-2 border-stark-white
+           bg-true-black
+           overflow-hidden shadow-[12px_12px_0px_0px_rgba(255,255,255,0.1)]"
 	>
-		<p class={`text-8xl font-bold ${errorColor} font-sans`}>
-			{errorCode}
-		</p>
+		<div class="bg-stark-white px-6 py-2 border-b-2 border-true-black">
+			<span class="text-true-black font-black uppercase tracking-widest text-sm">
+				Critical System Alert // {errorCode}
+			</span>
+		</div>
 
-		<h1 class="font-sans text-3xl font-semibold text-gray-900 dark:text-white">
-			{errorTitle}
-		</h1>
+		<div class="flex flex-col items-center p-10 text-center space-y-8">
+			<div class="space-y-2">
+				<h1 class="text-6xl font-black text-stark-white uppercase tracking-tighter">
+					{errorTitle}
+				</h1>
+				<div class="h-1.5 w-24 bg-stark-white mx-auto"></div>
+			</div>
 
-		<p class="font-sans text-lg text-gray-600 dark:text-gray-300">
-			{errorMessage}
-		</p>
+			<p class="text-xl text-stark-white max-w-prose leading-relaxed opacity-90">
+				{errorMessage}
+			</p>
 
-		<div class="pt-4">
-			<button
-				onclick={onNavigateHome}
-				class={`
-          rounded-full bg-indigo-600 px-6 py-3 text-lg 
-          font-medium text-white hover:bg-indigo-700 
-          focus:ring-4 focus:ring-indigo-500/50 focus:outline-none 
-          ${buttonClasses}
-        `}
-			>
-				Go Home
-			</button>
+			<div class="w-full pt-4">
+				<button
+					onclick={onNavigateHome}
+					class="
+						w-full py-5 px-8
+						bg-true-black 
+						text-stark-white 
+						border-2 border-stark-white
+						font-black uppercase tracking-widest text-lg
+						hover:bg-stark-white hover:text-true-black
+						cursor-pointer
+						{buttonClasses}
+					"
+				>
+					Return to Command Center
+				</button>
+			</div>
+		</div>
+
+		<div class="border-t border-stark-white/20 p-4 bg-black/50">
+			<p class="text-[10px] text-stark-white/40 font-mono text-left">
+				JEMO_CORE_OS // ERR_SIG_LOST // {new Date().toISOString()}
+			</p>
 		</div>
 	</div>
 </div>
+

@@ -20,6 +20,14 @@
             link:'https://umbc-hackathon-git-feature-redesign-login-page-jemo69s-projects.vercel.app',
 			description:'this was a project i built during my hackathon at umbc '
 		},
+        {
+            id: 4,
+            name:'Echo-mesh',
+            stack : 'sveltekit tailwindcss postgresql',
+            link: "https://github.com/Jemo69/Echo-Mesh",
+            description:'it an app i built for my church to collect survey data for event'
+            
+        }
 	]);
 
 	export let skills = $state([

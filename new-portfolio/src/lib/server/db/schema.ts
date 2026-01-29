@@ -9,6 +9,7 @@ export const blog = sqliteTable('blog' , {
     title : text('title'),
     slug : text('slug').unique().notNull(),
     content : text('content'),
+    views: integer('views').default(0)
     }
 )
 export const contact = sqliteTable('contact' , {
