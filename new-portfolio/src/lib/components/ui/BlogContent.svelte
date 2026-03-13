@@ -1,30 +1,34 @@
 <script lang="ts">
+	import { marked } from 'marked';
+
 	interface Props {
 		content: string;
 		class?: string;
 	}
 
 	let { content, class: className = '' }: Props = $props();
+
+	let htmlContent = $derived(marked.parse(content));
 </script>
 
 <div class="prose prose-invert max-w-none {className}">
-	{@html content}
+	{@html htmlContent}
 </div>
 
 <style>
 	/* JEMO CORE Prose Overrides */
 	:global(.prose) {
 		/* Headings - "Loud & Clear" */
-		--tw-prose-headings: theme('colors.stark-white');
-		--tw-prose-body: theme('colors.gray.300');
-		--tw-prose-bold: theme('colors.stark-white');
-		--tw-prose-links: theme('colors.stark-white');
-		--tw-prose-code: theme('colors.stark-white');
-		--tw-prose-quotes: theme('colors.gray.400');
-		--tw-prose-quote-borders: theme('colors.stark-white');
-		--tw-prose-hr: theme('colors.stark-white');
-		--tw-prose-th-borders: theme('colors.stark-white');
-		--tw-prose-td-borders: theme('colors.gray.600');
+		--tw-prose-headings: var(--color-stark-white);
+		--tw-prose-body: var(--color-gray-300);
+		--tw-prose-bold: var(--color-stark-white);
+		--tw-prose-links: var(--color-stark-white);
+		--tw-prose-code: var(--color-stark-white);
+		--tw-prose-quotes: var(--color-gray-400);
+		--tw-prose-quote-borders: var(--color-stark-white);
+		--tw-prose-hr: var(--color-stark-white);
+		--tw-prose-th-borders: var(--color-stark-white);
+		--tw-prose-td-borders: var(--color-gray-600);
 	}
 
 	:global(.prose h1),
@@ -51,33 +55,33 @@
 	}
 
 	:global(.prose a:hover) {
-		background-color: theme('colors.stark-white');
-		color: theme('colors.true-black');
+		background-color: var(--color-stark-white);
+		color: var(--color-true-black);
 		padding: 0 4px;
 	}
 
 	:global(.prose code) {
-		background-color: theme('colors.true-black');
-		border: 2px solid theme('colors.stark-white');
+		background-color: var(--color-true-black);
+		border: 2px solid var(--color-stark-white);
 		padding: 2px 6px;
 		border-radius: 4px;
 		font-weight: 700;
 	}
 
 	:global(.prose pre) {
-		background-color: theme('colors.true-black');
-		border: 2px solid theme('colors.stark-white');
+		background-color: var(--color-true-black);
+		border: 2px solid var(--color-stark-white);
 		padding: 16px;
 	}
 
 	:global(.prose blockquote) {
-		border-left: 4px solid theme('colors.stark-white');
+		border-left: 4px solid var(--color-stark-white);
 		font-style: italic;
 		font-weight: 500;
 	}
 
 	:global(.prose hr) {
-		border-color: theme('colors.stark-white');
+		border-color: var(--color-stark-white);
 		border-width: 2px;
 	}
 
@@ -87,11 +91,11 @@
 	}
 
 	:global(.prose table) {
-		border: 2px solid theme('colors.stark-white');
+		border: 2px solid var(--color-stark-white);
 	}
 
 	:global(.prose th) {
-		background-color: theme('colors.true-black');
+		background-color: var(--color-true-black);
 		text-transform: uppercase;
 		font-weight: 800;
 		letter-spacing: 0.05em;

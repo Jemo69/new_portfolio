@@ -1,4 +1,6 @@
 <script lang="ts">
+	import BlogContent from '$lib/components/ui/BlogContent.svelte';
+
 	interface PostType {
 		title: string;
 		content: string;
@@ -12,16 +14,6 @@
 	}>();
 
 	const blogpost = $derived(data.post);
-
-	function processContent(content: string) {
-		if (!content) return '';
-		// If it contains HTML tags, treat as HTML
-		if (/<[a-z][\s\S]*>/i.test(content)) {
-			return content;
-		}
-		// Otherwise, convert line breaks to <br>
-		return content.replace(/\n/g, '<br />');
-	}
 </script>
 
 <svelte:head>
@@ -40,9 +32,7 @@
 			<h1 class="text-5xl font-black text-stark-white uppercase tracking-tighter leading-none">{blogpost.title}</h1>
 		</header>
 		
-		<div class="prose prose-invert max-w-none text-lg leading-relaxed text-gray-300 font-medium">
-			{@html processContent(blogpost.content)}
-		</div>
+		<BlogContent content={blogpost.content} class="text-lg leading-relaxed text-gray-300 font-medium" />
 	</article>
 {:else}
 	<div class="flex flex-col items-center justify-center min-h-[50vh]">

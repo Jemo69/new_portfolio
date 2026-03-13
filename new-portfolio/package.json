@@ -46,6 +46,7 @@
 		]
 	},
 	"dependencies": {
+		"marked": "^17.0.4",
 		"tailwindcss": "^4.1.18",
 		"zod": "^4.1.11"
 	}
