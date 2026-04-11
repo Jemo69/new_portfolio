@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1759370589684,
+      "tag": "0000_powerful_roulette",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1759380720769,
+      "tag": "0001_tiny_havok",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1759536639100,
+      "tag": "0002_sour_sleepwalker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1769663877523,
+      "tag": "0003_cheerful_scarlet_witch",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1775932833877,
+      "tag": "0004_lucky_purifiers",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+    /* JEMO CORE Palette - The "Onyx" Palette */
+    --color-onyx: #1E1E1E;
+    /* Primary Background */
+    --color-true-black: #000000;
+    /* Component Fill */
+    --color-stark-white: #FFFFFF;
+    /* Text/Borders */
+
+    /* Typography - "Loud & Clear" */
+    --font-sans: "Montserrat", "Roboto", sans-serif;
+
+    /* The "Container" Rule */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+}
+
+/* Global Styles */
+body {
+    @apply bg-onyx text-stark-white font-sans antialiased;
+}
+
+/* Typography Defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-bold uppercase tracking-wide;
+}
+
+/* Utility for "Container" Rule borders */
+.border-tactical {
+    @apply border-2 border-stark-white;
+}
+
+.border-tactical-inverse {
+    @apply border-2 border-true-black;
+}
