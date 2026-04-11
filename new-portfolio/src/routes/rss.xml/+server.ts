@@ -4,7 +4,7 @@ import { blog } from '$lib/server/db/schema';
 export const GET = async () => {
 	const posts = await db.select().from(blog);
 
-	const siteUrl = 'https://jemo.dev';
+	const siteUrl ='https://new-portfolio-ten-amber.vercel.app/';
 	const siteTitle = 'Jemo\'s Blog';
 	const siteDescription = 'A personal blog about technology and development';
 
