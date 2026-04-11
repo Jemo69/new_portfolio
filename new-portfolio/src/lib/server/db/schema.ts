@@ -6,10 +6,12 @@ export const user = sqliteTable('user', {
     password : text("password").notNull()
 });
 export const blog = sqliteTable('blog' , {
+    id : integer('id', {mode:'number'}).primaryKey({autoIncrement : true }),
     title : text('title'),
     slug : text('slug').unique().notNull(),
     content : text('content'),
-    views: integer('views').default(0)
+    views: integer('views').default(0),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(new Date())
     }
 )
 export const contact = sqliteTable('contact' , {
