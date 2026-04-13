@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BlogContent from '$lib/components/ui/BlogContent.svelte';
+	import { reveal } from '$lib/actions/reveal';
 
 	interface PostType {
 		title: string;
@@ -23,10 +24,12 @@
 </svelte:head>
 
 {#if blogpost}
-	<article class="max-w-4xl mx-auto p-6">
-		<header class="mb-12 border-b-2 border-stark-white pb-6">
-			<div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 mb-4">
-				<div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+	<article use:reveal class="max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
+		<header class="mb-8 border-b-2 border-stark-white pb-6 sm:mb-12">
+			<div
+				class="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500"
+			>
+				<div class="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
 				<span>Transmission Unit: {blogpost.views || 0}</span>
 			</div>
 			<h1
@@ -35,8 +38,11 @@
 				{blogpost.title}
 			</h1>
 		</header>
-		
-		<BlogContent content={blogpost.content} class="text-lg leading-relaxed text-gray-300 font-medium" />
+
+		<BlogContent
+			content={blogpost.content}
+			class="font-medium leading-relaxed text-gray-300 md:text-lg"
+		/>
 	</article>
 {:else}
 	<div class="flex flex-col items-center justify-center min-h-[50vh]">
