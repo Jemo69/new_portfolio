@@ -2,12 +2,12 @@ import { query } from "$app/server";
 import { db } from "$lib/server/db";
 import { blog } from "$lib/server/db/schema";
 import  { z } from 'zod'
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 
 
 export const getBlog = query(async()=>{
-    const BlogPosts = await db.select().from(blog)
+    const BlogPosts = await db.select().from(blog).orderBy(desc(blog.createdAt))
     return BlogPosts
 })
 

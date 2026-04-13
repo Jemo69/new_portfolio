@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 import { blog } from '$lib/server/db/schema';
 import type { RequestHandler } from './$types';
 import { SECRET_CODE } from '$env/static/private';
@@ -18,7 +18,7 @@ export const GET: RequestHandler = async ({ request }) => {
     }
 
 	try {
-		const blogPost = await db.select().from(blog);
+		const blogPost = await db.select().from(blog).orderBy(desc(blog.createdAt));
 		return json(blogPost , { status: 200 });
 	} catch (error) {
 		return json({ error: 'Failed to fetch blog post' }, { status: 500 });
