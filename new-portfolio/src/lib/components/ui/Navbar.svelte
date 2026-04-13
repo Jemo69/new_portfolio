@@ -39,16 +39,19 @@
 
 		<!-- Mobile Menu Action (Placeholder) -->
 		<div class="md:hidden">
-			<Button onclick={() => (isOpen = !isOpen)} variant="secondary">Menu</Button>
+			<Button onclick={() => (isOpen = !isOpen)} variant="secondary" class="relative z-50">
+				{isOpen ? 'Close' : 'Menu'}
+			</Button>
 			{#if isOpen}
 				<div
-					class="absolute top-22 right-0 z-10 flex w-full flex-col gap-2 bg-onyx p-4 text-center"
+					class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-true-black p-6"
 				>
 					{#each navItems as item}
 						{@const isActive = $page.url.pathname === item.href}
 						<a
 							href={item.href}
-							class="rounded-sm border-2 px-4 py-2 text-sm font-bold tracking-wide uppercase transition-colors duration-200
+							onclick={() => (isOpen = false)}
+							class="w-full rounded-sm border-2 px-8 py-4 text-center text-xl font-black tracking-widest uppercase transition-colors duration-200
                             {isActive
 								? 'border-stark-white bg-stark-white text-true-black'
 								: 'border-transparent bg-transparent text-stark-white hover:border-stark-white hover:bg-onyx'}"

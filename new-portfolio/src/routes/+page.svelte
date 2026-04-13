@@ -2,6 +2,7 @@
 	import { skills, projects } from '$lib/list.svelte.ts';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Modal from '$lib/components/ui/Modal.svelte';
+	import { reveal } from '$lib/actions/reveal';
 
 	let showModal = $state(false);
 </script>
@@ -12,19 +13,22 @@
 
 <!-- Hero Section -->
 <section
-	class="mb-24 flex flex-col items-start justify-center border-l-4 border-stark-white py-12 pl-8"
+	use:reveal
+	class="mb-24 flex flex-col items-start justify-center border-l-2 border-stark-white py-12 pl-4 sm:border-l-4 sm:pl-8"
 >
-	<h1 class="mb-6 text-6xl font-black tracking-tighter text-stark-white uppercase sm:text-8xl">
+	<h1
+		class="mb-6 text-5xl font-black tracking-tighter text-stark-white uppercase md:text-8xl lg:text-9xl"
+	>
 		JEREMY<br /> PORTFOLIO
 	</h1>
-	<p class="mb-10 max-w-2xl text-xl font-bold tracking-wide text-gray-400 uppercase">
+	<p class="mb-10 max-w-2xl text-lg font-bold tracking-wide text-gray-400 uppercase sm:text-xl">
 		Tactical Web Development. <br />
 		<span class="text-stark-white">Solving problems with absolute contrast.</span>
 	</p>
 </section>
 
 <!-- Skills Section -->
-<section id="skills" class="mb-24">
+<section id="skills" use:reveal={{ delay: 100 }} class="mb-24">
 	<div class="mb-8 flex items-center gap-4">
 		<div class="h-4 w-4 bg-stark-white"></div>
 		<h2 class="text-3xl font-black tracking-widest uppercase">Technical Arsenal</h2>
@@ -42,7 +46,7 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="mb-24">
+<section id="projects" use:reveal={{ delay: 200 }} class="mb-24">
 	<div class="mb-8 flex items-center gap-4">
 		<div class="h-4 w-4 bg-stark-white"></div>
 		<h2 class="text-3xl font-black tracking-widest uppercase">Deployed Operations</h2>

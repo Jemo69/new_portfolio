@@ -29,7 +29,11 @@
 				<div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
 				<span>Transmission Unit: {blogpost.views || 0}</span>
 			</div>
-			<h1 class="text-5xl font-black text-stark-white uppercase tracking-tighter leading-none">{blogpost.title}</h1>
+			<h1
+				class="text-4xl font-black leading-none text-stark-white uppercase tracking-tighter md:text-6xl lg:text-7xl"
+			>
+				{blogpost.title}
+			</h1>
 		</header>
 		
 		<BlogContent content={blogpost.content} class="text-lg leading-relaxed text-gray-300 font-medium" />

@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Button from '$lib/component/Button/Button.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 	import { experiences, tools, designSkills } from '$lib/list.svelte';
 	import { DownloadResume } from '../contact/data.remote';
+	import { reveal } from '$lib/actions/reveal';
 
-	let downloading = false;
-	let downloadError: string | null = null;
+	let downloading = $state(false);
+	let downloadError = $state<string | null>(null);
 	async function handleDownload() {
 		downloading = true;
 		downloadError = null;
@@ -33,38 +34,47 @@
 </script>
 
 <svelte:head>
-	<title>About Me - Jeremy</title>
+	<title>ABOUT // JEMO CORE</title>
 </svelte:head>
 
-<div class="bg-background-950 text-text-500 p-8 font-sans">
+<div class="flex flex-col gap-16 font-sans">
 	<!-- HERO SECTION -->
-	<header class="mb-22 flex flex-col items-center gap-8 md:flex-row">
-		<div class="h-32 w-32 flex-shrink-0 rounded-full bg-gray-200">
+	<header use:reveal class="flex flex-col items-center gap-8 md:flex-row">
+		<div
+			class="h-40 w-40 flex-shrink-0 border-4 border-stark-white bg-onyx grayscale transition-all hover:grayscale-0"
+		>
 			<img
 				src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mg5ot2RXyDyEuRVm8kGiJwPQ6vNaUAhordHSTM"
-				alt="a picture of me "
-				class="h-42 w-32 flex-shrink-0 rounded-full"
+				alt="Jeremy"
+				class="h-full w-full object-cover"
 			/>
 		</div>
 		<div class="text-center md:text-left">
-			<h1 class="m-0 text-4xl font-bold">Hi, I'm Jeremy.</h1>
-			<p class="my-2 mb-6 text-xl text-gray-50">
-				Software Engineer focused on creating intuitive digital experiences.
+			<h1 class="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-6xl">
+				Hi, I'm Jeremy.
+			</h1>
+			<p class="mb-8 max-w-xl text-lg font-bold text-gray-400 uppercase sm:text-xl">
+				Software Engineer focused on creating <span class="text-stark-white"
+					>tactical digital experiences.</span
+				>
 			</p>
 			<div class="flex justify-center gap-4 md:justify-start">
-				<Button onclick={handleDownload} variant="secondary"
-					>{downloading ? 'downloading' : 'Download my Resume'}</Button
-				>
+				<Button onclick={handleDownload} variant="secondary">
+					{downloading ? 'TRANSMITTING...' : 'DOWNLOAD RESUME'}
+				</Button>
 			</div>
+			{#if downloadError}
+				<p class="mt-4 text-xs font-bold text-red-500 uppercase">{downloadError}</p>
+			{/if}
 		</div>
 	</header>
 
-	<main class="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
+	<main class="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr]">
 		<!-- LEFT COLUMN -->
-		<div class="flex flex-col gap-8">
-			<section class="bg-background-900 rounded-2xl p-8 shadow-md">
-				<h2 class="mt-0 mb-6 text-2xl font-semibold">My Story & Philosophy</h2>
-				<p class="leading-relaxed text-gray-50">
+		<div class="flex flex-col gap-12">
+			<section use:reveal={{ delay: 100 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
+				<h2 class="mb-6 text-2xl font-black uppercase tracking-widest">Story & Philosophy</h2>
+				<p class="leading-relaxed text-gray-300">
 					A personal narrative about my journey into software engineering and my design philosophy,
 					emphasizing my core principles and approach to creating user-centered products. I believe
 					that great design is not just about aesthetics, but about solving real-world problems and
@@ -73,73 +83,70 @@
 				</p>
 			</section>
 
-			<section class="bg-background-900 rounded-2xl p-8 shadow-md">
-				<h2 class="mt-0 mb-6 text-2xl font-semibold">Experience</h2>
-				{#each experiences as experience}
-					<div class="experience-timeline">
-						<div class="experience-item">
-							<div class="timeline-dot"></div>
-							<div class="timeline-content">
-								<span class="mb-1 block text-sm text-gray-50">{experience.timeline}</span>
-								<h3 class="m-0 text-lg font-semibold">{experience.title}</h3>
-								<p class="mt-2 leading-relaxed text-gray-50">
-									{experience.description}
-								</p>
-							</div>
+			<section use:reveal={{ delay: 200 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
+				<h2 class="mb-6 text-2xl font-black uppercase tracking-widest">Field Experience</h2>
+				<div class="flex flex-col gap-8">
+					{#each experiences as experience}
+						<div class="relative">
+							<span class="mb-1 block text-xs font-black tracking-widest text-gray-500 uppercase"
+								>{experience.timeline}</span
+							>
+							<h3 class="mb-2 text-xl font-bold uppercase">{experience.title}</h3>
+							<p class="leading-relaxed text-gray-400">
+								{experience.description}
+							</p>
 						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</section>
 		</div>
 
 		<!-- RIGHT COLUMN -->
-		<aside class="flex flex-col gap-8">
-			<section class="bg-background-900 rounded-2xl p-8 shadow-md">
-				<h2 class="mt-0 mb-6 text-2xl font-semibold">Tools & Software</h2>
-				<div class="flex flex-wrap gap-3">
+		<aside class="flex flex-col gap-12">
+			<section use:reveal={{ delay: 300 }} class="border-2 border-stark-white bg-onyx p-6">
+				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Technical Tools</h2>
+				<div class="flex flex-wrap gap-2">
 					{#each tools as tool}
-						<span class="bg-background-800 text-text-200 rounded-full px-4 py-2 text-sm font-medium"
-							>{tool}</span
-						>
+						<span class="border border-gray-600 px-3 py-1 text-xs font-bold uppercase text-gray-400">
+							{tool}
+						</span>
 					{/each}
 				</div>
 			</section>
 
-			<section class="bg-background-900 rounded-2xl p-8 shadow-md">
-				<h2 class="mt-0 mb-6 text-2xl font-semibold">Skills</h2>
-				<div class="grid grid-cols-2 gap-3">
+			<section class="border-2 border-stark-white bg-onyx p-6">
+				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Core Skills</h2>
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					{#each designSkills as skill}
-						<div
-							class="bg-background-800 flex flex-col items-center gap-3 rounded-xl p-4 text-center"
-						>
-							<div class="text-secondary-200">
+						<div class="flex flex-col gap-2 border border-gray-700 p-4">
+							<div class="text-stark-white">
 								{@html skill.icon}
 							</div>
-							<span>{skill.name}</span>
+							<span class="text-xs font-bold uppercase">{skill.name}</span>
 						</div>
 					{/each}
 				</div>
 			</section>
 
-			<section class="bg-background-900 rounded-2xl p-8 shadow-md">
-				<h2 class="mt-0 mb-6 text-2xl font-semibold">A Little More About Me</h2>
-				<div class="mb-4 grid grid-cols-2 gap-4">
-					<div class="aspect-square w-full rounded-xl bg-gray-200">
+			<section class="border-2 border-stark-white bg-onyx p-6">
+				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Visual Data</h2>
+				<div class="mb-6 grid grid-cols-2 gap-4">
+					<div class="aspect-square border border-gray-700">
 						<img
 							src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mg5KZJGLyDyEuRVm8kGiJwPQ6vNaUAhordHSTM"
 							alt=""
-							class="aspect-squares"
+							class="h-full w-full object-cover grayscale transition-all hover:grayscale-0"
 						/>
 					</div>
-					<div class="aspect-square w-full rounded-xl bg-gray-200">
+					<div class="aspect-square border border-gray-700">
 						<img
 							src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mgRRf9PvaNCdjpzBuK7vHeO4FDo5b1GXgw8Q2c"
-							class="aspect-square"
+							class="h-full w-full object-cover grayscale transition-all hover:grayscale-0"
 							alt=""
 						/>
 					</div>
 				</div>
-				<p class="leading-relaxed text-gray-200">
+				<p class="text-sm leading-relaxed text-gray-400">
 					When I'm not coding, you can find me helping in the church or playing super smash bros or
 					pokemon I believe that creativity thrives on diverse experiences.
 				</p>
@@ -149,26 +156,5 @@
 </div>
 
 <style>
-	/* Experience Timeline - Requires pseudo-elements not available in Tailwind */
-	.experience-timeline {
-		position: relative;
-		border-left: 2px solid #dee2e6; /* --border-color */
-		padding-left: 2rem;
-	}
-	.experience-item {
-		position: relative;
-		margin-bottom: 2rem;
-	}
-	.experience-item:last-child {
-		margin-bottom: 0;
-	}
-	.timeline-dot {
-		position: absolute;
-		left: -2.5rem;
-		top: 4px;
-		width: 16px;
-		height: 16px;
-		border-radius: 9999px;
-		background-color: #0d6efd; /* --accent-color */
-	}
+	@reference 'tailwindcss';
 </style>
