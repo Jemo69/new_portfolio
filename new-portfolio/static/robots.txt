@@ -1,3 +1,5 @@
 # allow crawling everything by default
 User-agent: *
 Disallow:
+
+Sitemap: https://new-portfolio-ten-amber.vercel.app/sitemap.xml
