@@ -3,6 +3,7 @@
 	import { experiences, tools, designSkills } from '$lib/list.svelte';
 	import { DownloadResume } from '../contact/data.remote';
 	import { reveal } from '$lib/actions/reveal';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let downloading = $state(false);
 	let downloadError = $state<string | null>(null);
@@ -33,9 +34,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>ABOUT // JEMO CORE</title>
-</svelte:head>
+<SEO
+	title="ABOUT // JEMO CORE"
+	description="Learn about Jeremy Nwachukwu, the engineer behind JEMO CORE and the Jeremy Portfolio. Expertise in software development and tactical digital experiences."
+	canonical="https://new-portfolio-ten-amber.vercel.app/about"
+/>
 
 <div class="flex flex-col gap-16 font-sans">
 	<!-- HERO SECTION -->

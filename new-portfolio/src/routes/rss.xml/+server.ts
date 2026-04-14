@@ -6,8 +6,8 @@ export const GET = async () => {
 	const posts = await db.select().from(blog).orderBy(desc(blog.createdAt));
 
 	const siteUrl ='https://new-portfolio-ten-amber.vercel.app/';
-	const siteTitle = 'Jemo\'s Blog';
-	const siteDescription = 'A personal blog about technology and development';
+	const siteTitle = 'JEMO CORE // JEREMY PORTFOLIO';
+	const siteDescription = 'Tactical Web Development and Software Engineering insights from Jeremy Nwachukwu.';
 
 	const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

@@ -1,11 +1,13 @@
 <script lang="ts">
 	import BlogContent from '$lib/components/ui/BlogContent.svelte';
+	import SEO from '$lib/components/SEO.svelte';
 
 	interface PostType {
 		title: string;
 		content: string;
 		slug: string;
 		views: number;
+		createdAt?: Date;
 	}
 	let { data } = $props<{
 		data: {
@@ -14,15 +16,47 @@
 	}>();
 
 	const blogpost = $derived(data.post);
+
+	const description = $derived(
+		blogpost?.content
+			? blogpost.content
+					.replace(/[#*`]/g, '')
+					.slice(0, 160)
+					.trim() + '...'
+			: 'Read this blog post on JEMO CORE.'
+	);
+
+	const jsonLd = $derived(
+		blogpost
+			? JSON.stringify({
+					'@context': 'https://schema.org',
+					'@type': 'BlogPosting',
+					headline: blogpost.title,
+					description: description,
+					author: {
+						'@type': 'Person',
+						name: 'Jeremy Nwachukwu'
+					},
+					datePublished: blogpost.createdAt?.toISOString(),
+					url: `https://new-portfolio-ten-amber.vercel.app/blog/${blogpost.slug}`
+				})
+			: ''
+	);
 </script>
 
-<svelte:head>
-	{#if blogpost}
-		<title>{blogpost.title}</title>
-	{/if}
-</svelte:head>
-
 {#if blogpost}
+	<SEO
+		title={blogpost.title}
+		{description}
+		canonical={`https://new-portfolio-ten-amber.vercel.app/blog/${blogpost.slug}`}
+		ogType="article"
+		articleData={{
+			publishedTime: blogpost.createdAt?.toISOString(),
+			author: 'Jeremy Nwachukwu'
+		}}
+		{jsonLd}
+	/>
+
 	<article class="max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
 		<header class="mb-8 border-b-2 border-stark-white pb-6 sm:mb-12">
 			<div
@@ -49,4 +83,3 @@
 		<a href="/blog" class="mt-4 text-accent-500 hover:underline">Back to Blog</a>
 	</div>
 {/if}
-

@@ -15,11 +15,11 @@
 <nav class="w-full border-b-2 border-stark-white bg-true-black px-6 py-4">
 	<div class="mx-auto flex max-w-7xl items-center justify-between">
 		<!-- Logo Plaque -->
-		<div class="border-2 border-stark-white bg-onyx px-4 py-2">
-			<span class="text-xl font-black tracking-widest text-stark-white uppercase">
-				Jeremy<span class="text-gray-400">Portfolio</span>
+		<a href="/" class="border-2 border-stark-white bg-onyx px-4 py-2 no-underline hover:bg-stark-white group transition-colors">
+			<span class="text-xl font-black tracking-widest text-stark-white uppercase group-hover:text-true-black transition-colors">
+				Jeremy<span class="text-gray-400 group-hover:text-true-black/60">Portfolio</span>
 			</span>
-		</div>
+		</a>
 
 		<!-- Navigation Links -->
 		<div class="hidden space-x-1 md:flex">

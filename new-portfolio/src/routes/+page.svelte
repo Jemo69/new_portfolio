@@ -3,13 +3,16 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Modal from '$lib/components/ui/Modal.svelte';
 	import { reveal } from '$lib/actions/reveal';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let showModal = $state(false);
 </script>
 
-<svelte:head>
-	<title>JEREMY NWACHUKWU // JEMO CORE</title>
-</svelte:head>
+<SEO
+	title="JEREMY NWACHUKWU // JEMO CORE"
+	description="Jeremy Nwachukwu's Portfolio (JEMO CORE). Tactical Web Development and Software Engineering. Expert in Svelte, React, and Full-Stack Engineering. Discover my Jeremy Portfolio project operations."
+	canonical="https://new-portfolio-ten-amber.vercel.app/"
+/>
 
 <!-- Hero Section -->
 <section

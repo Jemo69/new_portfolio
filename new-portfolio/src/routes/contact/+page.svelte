@@ -2,6 +2,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import { postContact, DownloadResume } from './data.remote';
 	import { reveal } from '$lib/actions/reveal';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let downloading = $state(false);
 	let downloadError = $state<string | null>(null);
@@ -32,9 +33,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>CONTACT // JEMO CORE</title>
-</svelte:head>
+<SEO
+	title="CONTACT // JEMO CORE"
+	description="Establish communications with Jeremy Nwachukwu (JEMO CORE). Reach out for tactical collaborations, software engineering projects, or inquiries about the Jeremy Portfolio."
+	canonical="https://new-portfolio-ten-amber.vercel.app/contact"
+/>
 
 <div class="flex min-h-[calc(100vh-200px)] flex-col items-center justify-center gap-12 py-12">
 	<div class="grid w-full grid-cols-1 gap-12 lg:grid-cols-2">
