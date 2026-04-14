@@ -17,6 +17,17 @@
 
 	const blogpost = $derived(data.post);
 
+	const formatDate = (date: any) => {
+		if (!date) return undefined;
+		try {
+			const d = typeof date === 'string' ? date.replace(/^"|"$/g, '') : date;
+			const parsed = new Date(d);
+			return isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
+		} catch (e) {
+			return undefined;
+		}
+	};
+
 	const description = $derived(
 		blogpost?.content
 			? blogpost.content
@@ -37,7 +48,7 @@
 						'@type': 'Person',
 						name: 'Jeremy Nwachukwu'
 					},
-					datePublished: blogpost.createdAt?.toISOString(),
+					datePublished: formatDate(blogpost.createdAt),
 					url: `https://new-portfolio-ten-amber.vercel.app/blog/${blogpost.slug}`
 				})
 			: ''
@@ -51,7 +62,7 @@
 		canonical={`https://new-portfolio-ten-amber.vercel.app/blog/${blogpost.slug}`}
 		ogType="article"
 		articleData={{
-			publishedTime: blogpost.createdAt?.toISOString(),
+			publishedTime: formatDate(blogpost.createdAt),
 			author: 'Jeremy Nwachukwu'
 		}}
 		{jsonLd}
