@@ -9,6 +9,12 @@ export const GET = async () => {
 	const siteTitle = 'JEMO CORE // JEREMY PORTFOLIO';
 	const siteDescription = 'Tactical Web Development and Software Engineering insights from Jeremy Nwachukwu.';
 
+	const formatDate = (date: any) => {
+		if (!date) return new Date().toUTCString();
+		const d = typeof date === 'string' ? date.replace(/^"|"$/g, '') : date;
+		return new Date(d).toUTCString();
+	};
+
 	const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
@@ -24,7 +30,7 @@ export const GET = async () => {
 		<link>${siteUrl}/blog/${post.slug}</link>
 		<guid isPermaLink="true">${siteUrl}/blog/${post.slug}</guid>
 		<description><![CDATA[${post.content?.slice(0, 200).replace(/[#*_`]/g, '') || ''}]]></description>
-		<pubDate>${post.createdAt ? new Date(post.createdAt).toUTCString() : new Date().toUTCString()}</pubDate>
+		<pubDate>${formatDate(post.createdAt)}</pubDate>
 	</item>`
 		)
 		.join('')}
