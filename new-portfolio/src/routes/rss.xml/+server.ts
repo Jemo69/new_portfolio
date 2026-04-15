@@ -5,14 +5,19 @@ import { desc } from 'drizzle-orm';
 export const GET = async () => {
 	const posts = await db.select().from(blog).orderBy(desc(blog.createdAt));
 
-	const siteUrl ='https://new-portfolio-ten-amber.vercel.app/';
+	const siteUrl ='https://new-portfolio-ten-amber.vercel.app';
 	const siteTitle = 'JEMO CORE // JEREMY PORTFOLIO';
 	const siteDescription = 'Tactical Web Development and Software Engineering insights from Jeremy Nwachukwu.';
 
 	const formatDate = (date: any) => {
 		if (!date) return new Date().toUTCString();
+		// Handle both string dates and timestamps
+		if (typeof date === 'number') {
+			return new Date(date).toUTCString();
+		}
 		const d = typeof date === 'string' ? date.replace(/^"|"$/g, '') : date;
-		return new Date(d).toUTCString();
+		const parsed = new Date(d);
+		return isNaN(parsed.getTime()) ? new Date().toUTCString() : parsed.toUTCString();
 	};
 
 	const rss = `<?xml version="1.0" encoding="UTF-8" ?>
@@ -40,7 +45,9 @@ export const GET = async () => {
 	return new Response(rss, {
 		headers: {
 			'Content-Type': 'application/xml',
-			'Cache-Control': 'max-age=0, s-maxage=3600'
+			'Cache-Control': 'no-cache, no-store, must-revalidate',
+			'Pragma': 'no-cache',
+			'Expires': '0'
 		}
 	});
 };
