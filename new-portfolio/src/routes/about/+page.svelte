@@ -53,7 +53,7 @@
 			/>
 		</div>
 		<div class="text-center md:text-left">
-			<h1 class="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-6xl">
+			<h1 class="mb-4 text-4xl font-black tracking-tighter uppercase sm:text-6xl">
 				Hi, I'm Jeremy.
 			</h1>
 			<p class="mb-8 max-w-xl text-lg font-bold text-gray-400 uppercase sm:text-xl">
@@ -76,7 +76,7 @@
 		<!-- LEFT COLUMN -->
 		<div class="flex flex-col gap-12">
 			<section use:reveal={{ delay: 100 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
-				<h2 class="mb-6 text-2xl font-black uppercase tracking-widest">Story & Philosophy</h2>
+				<h2 class="mb-6 text-2xl font-black tracking-widest uppercase">Story & Philosophy</h2>
 				<p class="leading-relaxed text-gray-300">
 					A personal narrative about my journey into software engineering and my design philosophy,
 					emphasizing my core principles and approach to creating user-centered products. I believe
@@ -87,7 +87,7 @@
 			</section>
 
 			<section use:reveal={{ delay: 200 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
-				<h2 class="mb-6 text-2xl font-black uppercase tracking-widest">Field Experience</h2>
+				<h2 class="mb-6 text-2xl font-black tracking-widest uppercase">Field Experience</h2>
 				<div class="flex flex-col gap-8">
 					{#each experiences as experience}
 						<div class="relative">
@@ -107,10 +107,12 @@
 		<!-- RIGHT COLUMN -->
 		<aside class="flex flex-col gap-12">
 			<section use:reveal={{ delay: 300 }} class="border-2 border-stark-white bg-onyx p-6">
-				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Technical Tools</h2>
+				<h2 class="mb-6 text-xl font-black tracking-widest uppercase">Technical Tools</h2>
 				<div class="flex flex-wrap gap-2">
 					{#each tools as tool}
-						<span class="border border-gray-600 px-3 py-1 text-xs font-bold uppercase text-gray-400">
+						<span
+							class="border border-gray-600 px-3 py-1 text-xs font-bold text-gray-400 uppercase"
+						>
 							{tool}
 						</span>
 					{/each}
@@ -118,21 +120,7 @@
 			</section>
 
 			<section class="border-2 border-stark-white bg-onyx p-6">
-				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Core Skills</h2>
-				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-					{#each designSkills as skill}
-						<div class="flex flex-col gap-2 border border-gray-700 p-4">
-							<div class="text-stark-white">
-								{@html skill.icon}
-							</div>
-							<span class="text-xs font-bold uppercase">{skill.name}</span>
-						</div>
-					{/each}
-				</div>
-			</section>
-
-			<section class="border-2 border-stark-white bg-onyx p-6">
-				<h2 class="mb-6 text-xl font-black uppercase tracking-widest">Visual Data</h2>
+				<h2 class="mb-6 text-xl font-black tracking-widest uppercase">Visual Data</h2>
 				<div class="mb-6 grid grid-cols-2 gap-4">
 					<div class="aspect-square border border-gray-700">
 						<img

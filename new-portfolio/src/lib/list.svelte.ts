@@ -27,6 +27,13 @@
             link: "https://github.com/Jemo69/Echo-Mesh",
             description:'it an app i built for my church to collect survey data for event'
             
+        },
+        {
+            id: 5,
+            name:'Appflowy MCP',
+            stack : 'Python FastMCP',
+            link: "https://github.com/Jemo69/Appflowy-MCP",
+            description:'This is a project that I built to give my ai agent access to my appflowy '
         }
 	]);
 
