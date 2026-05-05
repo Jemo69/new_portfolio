@@ -14,30 +14,23 @@
 </script>
 
 {#if open}
-	<!-- Backdrop -->
-	<div
-		class="bg-true-black/90 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
-	>
-		<!-- Modal Container -->
+	<div class="fixed inset-0 z-50 flex items-center justify-center bg-background-950/55 p-4 backdrop-blur-md">
 		<div
-			class="border-stark-white bg-onyx w-full max-w-lg overflow-hidden rounded-md border-2 shadow-2xl"
+			class="w-full max-w-lg overflow-hidden rounded-3xl border border-secondary-200/70 bg-background-50 shadow-[0_28px_90px_-32px_rgba(17,15,36,0.55)]"
 		>
-			<!-- Header -->
-			<div class="bg-true-black border-stark-white border-b-2 px-6 py-6">
-				<h2 class="text-stark-white text-3xl font-black uppercase tracking-tighter">
+			<div class="border-b border-secondary-100 px-6 py-6 sm:px-8">
+				<h2 class="text-3xl font-black tracking-tight text-text-950">
 					{title}
 				</h2>
 			</div>
 
-			<!-- Body -->
-			<div class="px-6 py-8">
-				<div class="text-lg text-gray-300">
+			<div class="px-6 py-8 sm:px-8">
+				<div class="text-base leading-7 text-text-700">
 					{@render children?.()}
 				</div>
 			</div>
 
-			<!-- Footer -->
-			<div class="bg-onyx border-stark-white/20 flex justify-end space-x-4 border-t-2 px-6 py-6">
+			<div class="flex justify-end gap-3 border-t border-secondary-100 bg-secondary-50/60 px-6 py-5 sm:px-8">
 				<Button variant="secondary" onclick={onclose}>Cancel</Button>
 				<Button variant="primary" onclick={onconfirm}>Confirm</Button>
 			</div>

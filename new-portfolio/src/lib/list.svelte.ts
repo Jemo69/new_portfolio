@@ -40,7 +40,10 @@
 		'svelte',
 		'sveltekit',
 		'django',
-		'fastapi'
+		'fastapi',
+        'nextjs',
+        'tailwindcss',
+        'sql',
 	]);
 
 	export const experiences = [
@@ -51,7 +54,7 @@
 		}
 	];
 
-	export const tools = ['figma', 'neovim', 'git' , 'github'];
+	export const tools = ['figma', 'neovim', 'git' , 'github' , 'docker' , 'autohotkey'];
 
 	export const designSkills = [
 		{

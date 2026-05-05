@@ -47,7 +47,9 @@
 		]
 	},
 	"dependencies": {
+		"highlight.js": "^11.11.1",
 		"marked": "^17.0.4",
+		"marked-highlight": "^2.2.4",
 		"tailwindcss": "^4.1.18",
 		"zod": "^4.1.11"
 	}

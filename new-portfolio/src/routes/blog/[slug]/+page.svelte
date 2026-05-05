@@ -68,25 +68,24 @@
 		{jsonLd}
 	/>
 
-	<article class="max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
-		<header class="mb-8 border-b-2 border-stark-white pb-6 sm:mb-12">
-			<div
-				class="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500"
-			>
-				<div class="h-2 w-2 rounded-full bg-green-500"></div>
-				<span>Transmission Unit: {blogpost.views || 0}</span>
+	<article class="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+		<header class="mb-10 sm:mb-14">
+			<div class="mb-5 inline-flex items-center gap-3 rounded-full border border-secondary-300/20 bg-secondary-950/50 px-4 py-2 text-[11px] font-semibold tracking-[0.24em] text-text-500 uppercase">
+				<span class="h-2.5 w-2.5 rounded-full bg-primary-500"></span>
+				<span>{blogpost.views || 0} views</span>
 			</div>
-			<h1
-				class="text-4xl font-black leading-none text-stark-white uppercase tracking-tighter md:text-6xl lg:text-7xl"
-			>
+			<h1 class="max-w-4xl text-4xl font-black leading-[0.94] text-text-950 tracking-tight md:text-6xl lg:text-[4.5rem]">
 				{blogpost.title}
 			</h1>
+			<div class="mt-6 h-px w-full max-w-3xl bg-gradient-to-r from-primary-400/70 via-secondary-300/30 to-transparent"></div>
 		</header>
 
-		<BlogContent
-			content={blogpost.content}
-			class="font-medium leading-relaxed text-gray-300 md:text-lg"
-		/>
+		<div class="rounded-[2.2rem] border border-secondary-300/16 bg-background-100/98 px-6 py-8 shadow-[0_28px_80px_-40px_rgba(8,6,45,0.82)] sm:px-10 sm:py-12">
+			<BlogContent
+				content={blogpost.content}
+				class="font-normal leading-relaxed text-text-900 md:text-lg"
+			/>
+		</div>
 	</article>
 {:else}
 	<div class="flex flex-col items-center justify-center min-h-[50vh]">
