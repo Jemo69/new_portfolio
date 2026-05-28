@@ -1,13 +1,19 @@
 <script lang="ts">
 	import { skills, projects } from '$lib/list.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import { getBlog } from './blog/data.remote';
 	import Modal from '$lib/components/ui/Modal.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import SEO from '$lib/components/SEO.svelte';
 
+	let { data } = $props<{
+		data: {
+			blogPosts: any[];
+		};
+	}>();
+
+	const blogPosts = $derived(data.blogPosts || []);
+
 	let showModal = $state(false);
-	const blogPosts = (await getBlog()).reverse();
 </script>
 
 <SEO
@@ -117,7 +123,7 @@
 			{#each blogPosts as post (post.id)}
 				<div
 					class="group hover flex h-full -translate-y-1 flex-col justify-between rounded-[1.75rem] border border-secondary-200/70 bg-background-50 p-6 shadow-[0_24px_60px_-40px_rgba(17,15,36,0.5)] transition-transform
-                    duration-300"
+						duration-300"
 				>
 					<a href={`/blog/${post.slug}`}>
 						<div>
