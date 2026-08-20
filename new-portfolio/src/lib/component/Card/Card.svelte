@@ -2,6 +2,8 @@
 	let { children } = $props();
 </script>
 
-<div class="bg-onyx border-2 border-stark-white p-6 m-2 transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+<div
+	class="block border-2 border-stark-white bg-true-black p-6 transition-all duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[-3px_-3px_0px_0px_rgba(255,255,255,0.35)]"
+>
 	{@render children?.()}
 </div>

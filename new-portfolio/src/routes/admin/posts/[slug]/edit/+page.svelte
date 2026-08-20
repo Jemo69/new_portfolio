@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
-	let slug = $derived($page.params.slug);
+	let slug = $derived($page.params.slug ?? '');
 	let title = $state('');
 	let content = $state('');
 	let loaded = $state(false);
@@ -13,7 +13,7 @@
 
 	$effect(() => {
 		getPostBySlug(slug).then((post) => {
-			if (!post) {
+			if (!post || post.title == null || post.content == null) {
 				notFound = true;
 				return;
 			}
@@ -40,44 +40,60 @@
 
 {#if notFound}
 	<div class="flex flex-col items-center justify-center py-20">
-		<p class="text-lg font-semibold text-neutral-500">Post not found</p>
-		<a href="/admin/posts" class="mt-4 text-sm text-amber-500 hover:underline">Back to posts</a>
+		<p class="text-lg font-bold text-stark-white">Post not found</p>
+		<a
+			href="/admin/posts"
+			class="mt-4 text-sm font-bold tracking-[0.16em] uppercase underline underline-offset-4 hover:text-stark-white/60"
+			>Back to posts</a
+		>
 	</div>
 {:else if loaded}
-	<h1 class="mb-8 text-3xl font-black tracking-tight">Edit Post</h1>
+	<div class="flex items-center justify-between border-2 border-stark-white bg-true-black px-5 py-3">
+		<h1 class="text-sm font-black tracking-[0.24em] uppercase">Edit post</h1>
+		<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
+			Slug: {slug}
+		</p>
+	</div>
 
-	<form onsubmit={handleSubmit} class="flex flex-col gap-6 max-w-3xl">
+	<form onsubmit={handleSubmit} class="mt-10 flex max-w-3xl flex-col gap-6">
 		{#if error}
-			<p class="rounded-lg bg-red-950/60 px-4 py-3 text-sm font-medium text-red-400">{error}</p>
+			<p class="border-2 border-stark-white bg-true-black px-4 py-3 text-sm font-bold text-stark-white uppercase">
+				{error}
+			</p>
 		{/if}
 
 		<div class="flex flex-col gap-2">
-			<label for="title" class="text-sm font-semibold text-neutral-400">Title</label>
+			<label for="title" class="text-xs font-bold tracking-[0.16em] text-stark-white/75 uppercase">
+				Title
+			</label>
 			<input
 				id="title"
 				type="text"
 				bind:value={title}
 				required
-				class="w-full rounded-xl border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-base text-neutral-100 placeholder:text-neutral-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none"
+				class="w-full rounded-[10px] border-2 border-stark-white/40 bg-true-black px-4 py-3 text-base text-stark-white placeholder:text-gray-500 transition-colors duration-150 focus:border-stark-white focus:outline-none"
 			/>
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<p class="text-sm font-semibold text-neutral-400">
-				Slug <span class="text-neutral-600 font-normal">({slug})</span>
-			</p>
+			<div class="flex items-center gap-2">
+				<span class="h-2 w-2 bg-stark-white"></span>
+				<p class="text-xs font-bold tracking-[0.16em] text-stark-white/75 uppercase">
+					Slug: {slug}
+				</p>
+			</div>
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<label for="content" class="text-sm font-semibold text-neutral-400">
-				Content <span class="text-neutral-600 font-normal">(Markdown)</span>
+			<label for="content" class="text-xs font-bold tracking-[0.16em] text-stark-white/75 uppercase">
+				Content <span class="font-normal normal-case text-stark-white/50">(Markdown)</span>
 			</label>
 			<textarea
 				id="content"
 				bind:value={content}
 				required
 				rows="18"
-				class="w-full rounded-xl border border-neutral-800 bg-neutral-900/50 px-4 py-3 text-base text-neutral-100 placeholder:text-neutral-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none font-mono text-sm leading-relaxed resize-vertical"
+				class="w-full resize-y rounded-[10px] border-2 border-stark-white/40 bg-true-black px-4 py-3 font-mono text-sm leading-relaxed text-stark-white placeholder:text-gray-500 transition-colors duration-150 focus:border-stark-white focus:outline-none"
 			></textarea>
 		</div>
 
@@ -85,13 +101,13 @@
 			<button
 				type="submit"
 				disabled={submitting}
-				class="rounded-xl bg-amber-500 px-6 py-3 text-sm font-bold text-neutral-950 transition-colors hover:bg-amber-400 disabled:opacity-50"
+				class="cursor-pointer border-2 border-stark-white bg-stark-white px-6 py-3 text-sm font-bold tracking-[0.16em] text-true-black uppercase transition-colors duration-150 hover:bg-true-black hover:text-stark-white disabled:opacity-50"
 			>
 				{submitting ? 'Saving...' : 'Save changes'}
 			</button>
 			<a
 				href="/admin/posts"
-				class="rounded-xl border border-neutral-700 px-6 py-3 text-sm font-semibold transition-colors hover:bg-neutral-800"
+				class="border-2 border-stark-white bg-true-black px-6 py-3 text-sm font-bold tracking-[0.16em] text-stark-white uppercase transition-colors duration-150 hover:bg-stark-white hover:text-true-black"
 			>
 				Cancel
 			</a>

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/Button.svelte';
-	import { experiences, tools, designSkills } from '$lib/list.svelte';
+	import { experiences, tools, currentAge } from '$lib/list.svelte';
 	import { DownloadResume } from '../contact/data.remote';
 	import { reveal } from '$lib/actions/reveal';
 	import SEO from '$lib/components/SEO.svelte';
 
 	let downloading = $state(false);
 	let downloadError = $state<string | null>(null);
+	const age = currentAge();
 	async function handleDownload() {
 		downloading = true;
 		downloadError = null;
@@ -35,39 +36,40 @@
 </script>
 
 <SEO
-	title="ABOUT // JEMO CORE"
-	description="Learn about Jeremy Nwachukwu, the engineer behind JEMO CORE and the Jeremy Portfolio. Expertise in software development and tactical digital experiences."
+	title="ABOUT"
+	description="Learn about Ifeanyichukwu Jeremy Nwachukwu, the engineer behind this portfolio. Expertise in software development and tactical digital experiences."
 	canonical="https://new-portfolio-ten-amber.vercel.app/about"
 />
 
-<div class="flex flex-col gap-16 font-sans">
+<div class="flex flex-col gap-16">
 	<!-- HERO SECTION -->
-	<header use:reveal class="flex flex-col items-center gap-8 md:flex-row">
+	<header class="grid grid-cols-1 items-center gap-10 lg:grid-cols-[auto_1fr]">
 		<div
-			class="h-40 w-40 flex-shrink-0 border-4 border-stark-white bg-onyx grayscale transition-all hover:grayscale-0"
+			class="h-44 w-44 shrink-0 border-2 border-stark-white bg-true-black"
+			use:reveal
 		>
 			<img
 				src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mg5ot2RXyDyEuRVm8kGiJwPQ6vNaUAhordHSTM"
-				alt="Jeremy"
-				class="h-full w-full object-cover"
+				alt="Portrait of Jeremy"
+				class="h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
 			/>
 		</div>
-		<div class="text-center md:text-left">
-			<h1 class="mb-4 text-4xl font-black tracking-tighter uppercase sm:text-6xl">
-				Hi, I'm Jeremy.
+		<div class="flex flex-col gap-6 text-center lg:text-left">
+			<h1 class="text-4xl font-black tracking-[-0.02em] uppercase sm:text-6xl">
+				Jeremy Nwachukwu
 			</h1>
-			<p class="mb-8 max-w-xl text-lg font-bold text-gray-400 uppercase sm:text-xl">
-				Software Engineer focused on creating <span class="text-stark-white"
-					>tactical digital experiences.</span
-				>
+			<p class="max-w-2xl text-lg font-semibold leading-8 text-stark-white/85 sm:text-xl">
+				I'm Ifeanyichukwu — Jeremy, for short — a {age}-year-old software engineer
+				building tactical digital experiences. I work across the frontend, the backend,
+				and the line between them.
 			</p>
-			<div class="flex justify-center gap-4 md:justify-start">
+			<div class="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
 				<Button onclick={handleDownload} variant="secondary">
-					{downloading ? 'TRANSMITTING...' : 'DOWNLOAD RESUME'}
+					{downloading ? 'Transmitting...' : 'Download resume'}
 				</Button>
 			</div>
 			{#if downloadError}
-				<p class="mt-4 text-xs font-bold text-red-500 uppercase">{downloadError}</p>
+				<p class="font-bold tracking-[0.16em] text-stark-white uppercase">{downloadError}</p>
 			{/if}
 		</div>
 	</header>
@@ -75,27 +77,34 @@
 	<main class="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr]">
 		<!-- LEFT COLUMN -->
 		<div class="flex flex-col gap-12">
-			<section use:reveal={{ delay: 100 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
-				<h2 class="mb-6 text-2xl font-black tracking-widest uppercase">Story & Philosophy</h2>
-				<p class="leading-relaxed text-gray-300">
-					A personal narrative about my journey into software engineering and my design philosophy,
-					emphasizing my core principles and approach to creating user-centered products. I believe
-					that great design is not just about aesthetics, but about solving real-world problems and
-					making technology accessible and enjoyable for everyone. My approach is rooted in empathy,
+			<section
+				class="border-2 border-stark-white bg-true-black p-6 sm:p-8"
+				use:reveal
+			>
+				<div class="mb-6 flex items-center justify-between border-b-2 border-stark-white/25 pb-4">
+					<h2 class="text-sm font-black tracking-[0.24em] uppercase">Story & philosophy</h2>
+				</div>
+				<p class="max-w-2xl leading-relaxed text-stark-white/80">
+					I learned to code by building things I wanted to exist and breaking them until
+					they worked. That habit turned into a trade: clean systems, honest interfaces,
+					and software that does what it says. I believe great design is about solving
+					real problems, not decorating them. My approach is rooted in empathy,
 					collaboration, and a relentless pursuit of simplicity.
 				</p>
 			</section>
 
-			<section use:reveal={{ delay: 200 }} class="border-l-2 border-stark-white pl-6 sm:pl-8">
-				<h2 class="mb-6 text-2xl font-black tracking-widest uppercase">Field Experience</h2>
+			<section class="border-2 border-stark-white bg-true-black p-6 sm:p-8" use:reveal>
+				<div class="mb-6 flex items-center justify-between border-b-2 border-stark-white/25 pb-4">
+					<h2 class="text-sm font-black tracking-[0.24em] uppercase">Field experience</h2>
+				</div>
 				<div class="flex flex-col gap-8">
 					{#each experiences as experience}
-						<div class="relative">
-							<span class="mb-1 block text-xs font-black tracking-widest text-gray-500 uppercase"
-								>{experience.timeline}</span
-							>
-							<h3 class="mb-2 text-xl font-bold uppercase">{experience.title}</h3>
-							<p class="leading-relaxed text-gray-400">
+						<div class="flex flex-col gap-2">
+							<span class="text-xs font-black tracking-[0.2em] text-stark-white/50 uppercase">
+								{experience.timeline}
+							</span>
+							<h3 class="text-xl font-bold text-stark-white">{experience.title}</h3>
+							<p class="max-w-2xl leading-relaxed text-stark-white/75">
 								{experience.description}
 							</p>
 						</div>
@@ -106,12 +115,14 @@
 
 		<!-- RIGHT COLUMN -->
 		<aside class="flex flex-col gap-12">
-			<section use:reveal={{ delay: 300 }} class="border-2 border-stark-white bg-onyx p-6">
-				<h2 class="mb-6 text-xl font-black tracking-widest uppercase">Technical Tools</h2>
+			<section class="border-2 border-stark-white bg-true-black p-6 sm:p-8" use:reveal>
+				<div class="mb-6 flex items-center justify-between border-b-2 border-stark-white/25 pb-4">
+					<h2 class="text-sm font-black tracking-[0.24em] uppercase">Technical tools</h2>
+				</div>
 				<div class="flex flex-wrap gap-2">
 					{#each tools as tool}
 						<span
-							class="border border-gray-600 px-3 py-1 text-xs font-bold text-gray-400 uppercase"
+							class="border-2 border-stark-white/30 bg-onyx px-3 py-1 text-xs font-bold tracking-[0.14em] text-stark-white/80 uppercase transition-colors duration-150 hover:border-stark-white hover:text-stark-white"
 						>
 							{tool}
 						</span>
@@ -119,27 +130,29 @@
 				</div>
 			</section>
 
-			<section class="border-2 border-stark-white bg-onyx p-6">
-				<h2 class="mb-6 text-xl font-black tracking-widest uppercase">Visual Data</h2>
+			<section class="border-2 border-stark-white bg-true-black p-6 sm:p-8">
+				<div class="mb-6 flex items-center justify-between border-b-2 border-stark-white/25 pb-4">
+					<h2 class="text-sm font-black tracking-[0.24em] uppercase">Visual data</h2>
+				</div>
 				<div class="mb-6 grid grid-cols-2 gap-4">
-					<div class="aspect-square border border-gray-700">
+					<div class="border-2 border-stark-white/30">
 						<img
 							src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mg5KZJGLyDyEuRVm8kGiJwPQ6vNaUAhordHSTM"
 							alt=""
-							class="h-full w-full object-cover grayscale transition-all hover:grayscale-0"
+							class="h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
 						/>
 					</div>
-					<div class="aspect-square border border-gray-700">
+					<div class="border-2 border-stark-white/30">
 						<img
 							src="https://8331whtezt.ufs.sh/f/KXoBapOHo7mgRRf9PvaNCdjpzBuK7vHeO4FDo5b1GXgw8Q2c"
-							class="h-full w-full object-cover grayscale transition-all hover:grayscale-0"
+							class="h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
 							alt=""
 						/>
 					</div>
 				</div>
-				<p class="text-sm leading-relaxed text-gray-400">
-					When I'm not coding, you can find me helping in the church or playing super smash bros or
-					pokemon I believe that creativity thrives on diverse experiences.
+				<p class="text-sm leading-relaxed text-stark-white/65">
+					When I'm not coding, you can find me helping at my church or playing Super Smash
+					Bros. I believe creativity thrives on diverse experiences.
 				</p>
 			</section>
 		</aside>

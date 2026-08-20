@@ -6,8 +6,8 @@ export const GET = async () => {
 	const posts = await db.select().from(blog).orderBy(desc(blog.createdAt));
 
 	const siteUrl ='https://new-portfolio-ten-amber.vercel.app';
-	const siteTitle = 'JEMO CORE // JEREMY PORTFOLIO';
-	const siteDescription = 'Tactical Web Development and Software Engineering insights from Jeremy Nwachukwu.';
+	const siteTitle = 'Ifeanyichukwu Jeremy Nwachukwu — Portfolio';
+	const siteDescription = 'Tactical Web Development and Software Engineering insights from Ifeanyichukwu Jeremy Nwachukwu.';
 
 	const formatDate = (date: any) => {
 		if (!date) return new Date().toUTCString();

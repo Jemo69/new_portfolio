@@ -14,40 +14,61 @@
 	});
 </script>
 
-<h1 class="mb-10 text-3xl font-black tracking-tight">Dashboard</h1>
+<div class="flex items-center justify-between border-2 border-stark-white bg-true-black px-5 py-3">
+	<h1 class="text-sm font-black tracking-[0.24em] uppercase">Command dashboard</h1>
+	<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
+		System overview
+	</p>
+</div>
 
 {#if loaded}
-	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+	<div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
 		<a
 			href="/admin/posts"
-			class="group rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 transition-colors hover:border-neutral-700"
+			class="group flex items-center justify-between border-2 border-stark-white bg-true-black p-8 transition-colors duration-150 hover:bg-stark-white"
 		>
-			<p class="text-5xl font-black text-amber-500">{posts.length}</p>
-			<p class="mt-3 text-sm font-semibold tracking-wide text-neutral-400 uppercase">Blog posts</p>
-			<p class="mt-1 text-xs text-neutral-600">Manage and publish posts</p>
+			<span class="flex flex-col gap-2">
+				<span class="text-5xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+					{posts.length}
+				</span>
+				<span class="text-xs font-bold tracking-[0.2em] text-stark-white/60 uppercase transition-colors duration-150 group-hover:text-true-black/70">
+					Blog posts
+				</span>
+			</span>
+			<span class="text-2xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+				→
+			</span>
 		</a>
 		<a
 			href="/admin/contacts"
-			class="group rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 transition-colors hover:border-neutral-700"
+			class="group flex items-center justify-between border-2 border-stark-white bg-true-black p-8 transition-colors duration-150 hover:bg-stark-white"
 		>
-			<p class="text-5xl font-black text-amber-500">{contacts.length}</p>
-			<p class="mt-3 text-sm font-semibold tracking-wide text-neutral-400 uppercase">Contact submissions</p>
-			<p class="mt-1 text-xs text-neutral-600">View messages from visitors</p>
+			<span class="flex flex-col gap-2">
+				<span class="text-5xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+					{contacts.length}
+				</span>
+				<span class="text-xs font-bold tracking-[0.2em] text-stark-white/60 uppercase transition-colors duration-150 group-hover:text-true-black/70">
+					Contact submissions
+				</span>
+			</span>
+			<span class="text-2xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+				→
+			</span>
 		</a>
 	</div>
 
-	<div class="mt-12">
-		<h2 class="mb-4 text-lg font-bold">Quick actions</h2>
+	<div class="mt-14 flex flex-col gap-4">
+		<h2 class="text-sm font-black tracking-[0.24em] uppercase">Quick actions</h2>
 		<div class="flex flex-wrap gap-3">
 			<a
 				href="/admin/posts/new"
-				class="rounded-xl bg-amber-500 px-5 py-3 text-sm font-bold text-neutral-950 transition-colors hover:bg-amber-400"
+				class="border-2 border-stark-white bg-stark-white px-5 py-3 text-sm font-bold tracking-[0.16em] text-true-black uppercase transition-colors duration-150 hover:bg-true-black hover:text-stark-white"
 			>
-				New blog post
+				+ New blog post
 			</a>
 			<a
 				href="/admin/contacts"
-				class="rounded-xl border border-neutral-700 px-5 py-3 text-sm font-semibold transition-colors hover:bg-neutral-800"
+				class="border-2 border-stark-white bg-true-black px-5 py-3 text-sm font-bold tracking-[0.16em] text-stark-white uppercase transition-colors duration-150 hover:bg-stark-white hover:text-true-black"
 			>
 				View messages
 			</a>

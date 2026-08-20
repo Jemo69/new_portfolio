@@ -14,23 +14,21 @@
 </script>
 
 {#if open}
-	<div class="fixed inset-0 z-50 flex items-center justify-center bg-background-950/55 p-4 backdrop-blur-md">
-		<div
-			class="w-full max-w-lg overflow-hidden rounded-3xl border border-secondary-200/70 bg-background-50 shadow-[0_28px_90px_-32px_rgba(17,15,36,0.55)]"
-		>
-			<div class="border-b border-secondary-100 px-6 py-6 sm:px-8">
-				<h2 class="text-3xl font-black tracking-tight text-text-950">
+	<div class="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4">
+		<div class="w-full max-w-lg overflow-hidden rounded-[12px] border-2 border-stark-white bg-onyx shadow-[8px_8px_0px_0px_rgba(255,255,255,0.25)]">
+			<div class="border-b-2 border-stark-white bg-true-black px-7 py-7 sm:px-9">
+				<h2 class="text-3xl font-black tracking-wide text-stark-white uppercase">
 					{title}
 				</h2>
 			</div>
 
-			<div class="px-6 py-8 sm:px-8">
-				<div class="text-base leading-7 text-text-700">
+			<div class="px-7 py-8 sm:px-9">
+				<div class="text-base leading-7 text-stark-white">
 					{@render children?.()}
 				</div>
 			</div>
 
-			<div class="flex justify-end gap-3 border-t border-secondary-100 bg-secondary-50/60 px-6 py-5 sm:px-8">
+			<div class="flex justify-end gap-3 border-t-2 border-stark-white px-7 py-6 sm:px-9">
 				<Button variant="secondary" onclick={onclose}>Cancel</Button>
 				<Button variant="primary" onclick={onconfirm}>Confirm</Button>
 			</div>

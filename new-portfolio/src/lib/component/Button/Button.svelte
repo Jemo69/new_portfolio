@@ -14,11 +14,10 @@
 	}>();
 
 	const baseClasses =
-		'px-6 py-3 font-semibold uppercase tracking-widest transition-all duration-150 cursor-pointer active:translate-y-0 active:shadow-none hover:-translate-y-0.5';
+		'cursor-pointer rounded-[10px] px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] transition-all duration-150';
 	const variants = {
-		primary: 'bg-stark-white text-true-black hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.4)]',
-		secondary:
-			'bg-transparent border-2 border-stark-white text-stark-white hover:bg-stark-white hover:text-black'
+		primary: 'border-2 border-stark-white bg-stark-white text-true-black hover:bg-true-black hover:text-stark-white',
+		secondary: 'border-2 border-stark-white bg-true-black text-stark-white hover:bg-stark-white hover:text-true-black'
 	} as const;
 </script>
 

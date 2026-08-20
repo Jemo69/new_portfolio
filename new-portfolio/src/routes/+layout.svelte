@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-
 	import Navbar from '$lib/components/ui/Navbar.svelte';
+	import Footer from '$lib/component/Footer/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -10,11 +10,12 @@
 	<link rel="icon" href="/logo.ico" />
 </svelte:head>
 
-<div class="min-h-screen font-sans text-text-900">
+<div class="flex min-h-screen flex-col bg-onyx text-stark-white">
 	<Navbar />
-	<main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
+	<main class="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6 sm:py-16">
 		{@render children?.()}
 	</main>
+	<Footer />
 </div>
 
 <style>

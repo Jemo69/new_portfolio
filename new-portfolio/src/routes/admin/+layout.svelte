@@ -4,22 +4,52 @@
 	let { children } = $props();
 </script>
 
-<div class="min-h-screen bg-neutral-950 font-sans text-neutral-100">
-	<header class="flex items-center justify-between border-b border-neutral-800 px-6 py-4">
-		<div class="flex items-center gap-6">
-			<a href="/admin" class="text-lg font-bold tracking-tight">JEMO ADMIN</a>
-			<nav class="hidden gap-4 text-sm sm:flex">
-				<a href="/admin" class="transition-colors hover:text-amber-400">Dashboard</a>
-				<a href="/admin/posts" class="transition-colors hover:text-amber-400">Posts</a>
-				<a href="/admin/contacts" class="transition-colors hover:text-amber-400">Contacts</a>
+<div class="flex min-h-screen flex-col bg-onyx font-sans text-stark-white">
+	<header class="flex items-center justify-between border-b-2 border-stark-white px-6 py-4">
+		<div class="flex items-center gap-8">
+			<a href="/admin" class="block border-2 border-stark-white bg-true-black px-3 py-2 text-sm font-black tracking-[0.18em] uppercase">
+				Jeremy Admin
+			</a>
+			<nav class="hidden items-center gap-1 text-sm sm:flex">
+				<a
+					href="/admin"
+					class="border-2 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase transition-colors duration-150 {String($page.url.pathname) === '/admin'
+						? 'border-stark-white bg-stark-white text-true-black'
+						: 'border-transparent text-stark-white hover:border-stark-white'}"
+				>
+					Dashboard
+				</a>
+				<a
+					href="/admin/posts"
+					class="border-2 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase transition-colors duration-150 {String($page.url.pathname) === '/admin/posts'
+						? 'border-stark-white bg-stark-white text-true-black'
+						: 'border-transparent text-stark-white hover:border-stark-white'}"
+				>
+					Posts
+				</a>
+				<a
+					href="/admin/contacts"
+					class="border-2 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase transition-colors duration-150 {String($page.url.pathname) === '/admin/contacts'
+						? 'border-stark-white bg-stark-white text-true-black'
+						: 'border-transparent text-stark-white hover:border-stark-white'}"
+				>
+					Contacts
+				</a>
 			</nav>
 		</div>
 		<div class="flex items-center gap-4">
-			<a href="/" class="text-xs text-neutral-500 transition-colors hover:text-neutral-300">View site</a>
-			<a href="/admin/logout" class="rounded-full border border-neutral-700 px-4 py-1.5 text-xs font-semibold transition-colors hover:bg-neutral-800">Logout</a>
+			<a href="/" class="text-xs font-bold tracking-[0.14em] text-stark-white/60 uppercase transition-colors hover:text-stark-white">
+				View site
+			</a>
+			<a
+				href="/admin/logout"
+				class="border-2 border-stark-white bg-true-black px-4 py-2 text-xs font-bold tracking-[0.14em] text-stark-white uppercase transition-colors duration-150 hover:bg-stark-white hover:text-true-black"
+			>
+				Logout
+			</a>
 		</div>
 	</header>
-	<main class="mx-auto max-w-6xl px-6 py-10">
+	<main class="mx-auto w-full max-w-6xl flex-1 px-6 py-10">
 		{@render children?.()}
 	</main>
 </div>

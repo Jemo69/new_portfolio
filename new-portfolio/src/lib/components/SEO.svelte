@@ -22,13 +22,13 @@
 		canonical,
 		ogType = 'website',
 		ogImage = 'https://new-portfolio-ten-amber.vercel.app/logo.ico',
-		ogImageAlt = 'JEMO CORE Logo',
+		ogImageAlt = 'Jeremy Nwachukwu Logo',
 		twitterCard = 'summary_large_image',
 		articleData,
 		jsonLd
 	}: Props = $props();
 
-	const siteName = 'JEMO CORE';
+	const siteName = 'Jeremy Nwachukwu';
 	const fullTitle = title.includes(siteName) ? title : `${title} // ${siteName}`;
 </script>
 

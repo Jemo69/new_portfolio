@@ -53,7 +53,7 @@ type DownloadResumeResult =
       filename: string;
       mimeType: string;
       // Uint8Array is serializable in SvelteKit remote functions
-      data: Uint8Array;
+      data: Uint8Array<ArrayBuffer>;
     }
   | {
       ok: false;
@@ -140,7 +140,7 @@ let arrayBuffer = null
     const filename = 'resume.pdf';
 
      arrayBuffer = await res.arrayBuffer();
-     uint8 = new Uint8Array(arrayBuffer);
+     uint8 = new Uint8Array<ArrayBuffer>(arrayBuffer);
 
     return {
       ok: true,

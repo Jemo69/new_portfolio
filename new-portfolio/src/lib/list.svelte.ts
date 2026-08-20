@@ -63,6 +63,16 @@
 
 	export const tools = ['figma', 'neovim', 'git' , 'github' , 'docker' , 'autohotkey'];
 
+	export const birthDate = new Date(2008, 10, 9);
+
+	export function currentAge(date = new Date()): number {
+		let age = date.getFullYear() - birthDate.getFullYear();
+		const beforeBirthday =
+			date.getMonth() < birthDate.getMonth() ||
+			(date.getMonth() === birthDate.getMonth() && date.getDate() < birthDate.getDate());
+		return beforeBirthday ? age - 1 : age;
+	}
+
 	export const designSkills = [
 		{
 			name: 'User Research',

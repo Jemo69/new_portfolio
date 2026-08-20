@@ -1,5 +1,5 @@
 <script lang="ts">
-	/* JEMO CORE Refactor 
+	/* Jeremy Nwachukwu Refactor 
 	  Pillars: Binary Contrast, Hard Containment, Softened Industrial
 	*/
 	
@@ -68,7 +68,7 @@
 
 		<div class="border-t border-stark-white/20 p-4 bg-black/50">
 			<p class="text-[10px] text-stark-white/40 font-mono text-left">
-				JEMO_CORE_OS // ERR_SIG_LOST // {new Date().toISOString()}
+				JEREMY_OS // ERR_SIG_LOST // {new Date().toISOString()}
 			</p>
 		</div>
 	</div>
