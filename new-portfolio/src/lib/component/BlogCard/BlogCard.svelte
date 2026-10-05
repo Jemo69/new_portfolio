@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Card from '../Card/Card.svelte';
 	import Button from '../Button/Button.svelte';
+	import { formatViews } from '$lib/views';
 
 	let { blog } = $props<{
 		blog: {
@@ -29,7 +30,7 @@
 
 		<div class="mt-auto flex items-center justify-between gap-4 border-t-2 border-stark-white/25 pt-4">
 			<span class="text-[10px] font-bold tracking-[0.2em] text-stark-white/50 uppercase">
-				{blog.views || 0} views
+				{formatViews(blog.views)} views
 			</span>
 			<a href={`/blog/${blog.slug}`} class="no-underline">
 				<Button variant="secondary" class="px-4 py-2 text-xs">Access terminal</Button>

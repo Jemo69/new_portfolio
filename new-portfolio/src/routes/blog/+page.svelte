@@ -1,6 +1,8 @@
 <script lang="ts">
 	import BlogCard from '$lib/component/BlogCard/BlogCard.svelte';
 	import SEO from '$lib/components/SEO.svelte';
+	import RssLink from '$lib/components/ui/RssLink.svelte';
+	import { formatViews } from '$lib/views';
 
 	let { data } = $props<{
 		data: {
@@ -19,20 +21,32 @@
 />
 
 <div class="flex flex-col gap-12">
-	<div class="flex items-center justify-between border-2 border-stark-white bg-true-black px-5 py-3">
+	<div class="flex flex-wrap items-center justify-between gap-3 border-2 border-stark-white bg-true-black px-5 py-3">
 		<h1 class="text-sm font-black tracking-[0.24em] uppercase">Transmissions</h1>
-		<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
-			Field notes & posts
-		</p>
+		<div class="flex items-center gap-4">
+			<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
+				Field notes & posts
+			</p>
+			<RssLink />
+		</div>
 	</div>
 
 	{#if posts.length > 0}
 		{#if featured}
 			<article class="border-2 border-stark-white bg-true-black p-8 sm:p-12">
 				<div class="flex flex-col gap-5">
-					<div class="flex items-center gap-3 border-b-2 border-stark-white/25 pb-4 text-[11px] font-bold tracking-[0.24em] uppercase">
-						<span class="block h-2 w-2 bg-stark-white"></span>
-						<span class="text-stark-white/60">Latest transmission</span>
+					<div class="flex flex-wrap items-center gap-x-5 gap-y-3 border-b-2 border-stark-white/25 pb-4 text-[11px] font-bold tracking-[0.24em] uppercase">
+						<span class="flex items-center gap-3">
+							<span class="block h-2 w-2 bg-stark-white"></span>
+							<span class="text-stark-white/60">Latest transmission</span>
+						</span>
+						<span class="h-2 w-2 bg-stark-white/25"></span>
+						<a
+							href={`/blog/${featured.slug}`}
+							class="text-stark-white/50 transition-colors duration-150 hover:text-stark-white"
+						>
+							{formatViews(featured.views)} views
+						</a>
 					</div>
 					<h2 class="max-w-3xl text-3xl font-black leading-[1.05] tracking-tight uppercase sm:text-5xl">
 						{featured.title}

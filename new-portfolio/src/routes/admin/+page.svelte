@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { getPosts, getContacts } from './data.remote';
+	import { formatViews } from '$lib/views';
 
 	let posts = $state<any[]>([]);
 	let contacts = $state<any[]>([]);
 	let loaded = $state(false);
+
+	const totalViews = $derived(posts.reduce((sum, post) => sum + (post.views ?? 0), 0));
 
 	$effect(() => {
 		Promise.all([getPosts(), getContacts()]).then(([p, c]) => {
@@ -22,7 +25,23 @@
 </div>
 
 {#if loaded}
-	<div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+	<div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+		<a
+			href="/admin/posts"
+			class="group flex items-center justify-between border-2 border-stark-white bg-true-black p-8 transition-colors duration-150 hover:bg-stark-white"
+		>
+			<span class="flex flex-col gap-2">
+				<span class="text-5xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+					{formatViews(totalViews)}
+				</span>
+				<span class="text-xs font-bold tracking-[0.2em] text-stark-white/60 uppercase transition-colors duration-150 group-hover:text-true-black/70">
+					Total views
+				</span>
+			</span>
+			<span class="text-2xl font-black text-stark-white transition-colors duration-150 group-hover:text-true-black">
+				→
+			</span>
+		</a>
 		<a
 			href="/admin/posts"
 			class="group flex items-center justify-between border-2 border-stark-white bg-true-black p-8 transition-colors duration-150 hover:bg-stark-white"

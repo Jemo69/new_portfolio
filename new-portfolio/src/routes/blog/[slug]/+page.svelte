@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import BlogContent from '$lib/components/ui/BlogContent.svelte';
 	import SEO from '$lib/components/SEO.svelte';
+	import { recordView } from '../data.remote';
+	import { claimView, formatViews } from '$lib/views';
 
 	interface PostType {
 		title: string;
@@ -16,6 +19,27 @@
 	}>();
 
 	const blogpost = $derived(data.post);
+
+	// Server-rendered count, replaced by the authoritative one once this visit
+	// has been verified and recorded.
+	let syncedViews = $state<number | null>(null);
+	const views = $derived(syncedViews ?? blogpost?.views ?? 0);
+
+	afterNavigate(() => {
+		syncedViews = null;
+
+		const slug = blogpost?.slug;
+		if (!slug) return;
+
+		// The browser decides whether this is a new view. A refresh, or coming
+		// back to the post inside the dedupe window, is the same view — so no
+		// request is made and the server count stays untouched.
+		if (!claimView(slug)) return;
+
+		recordView({ slug }).then((result) => {
+			if (result.views !== null) syncedViews = result.views;
+		});
+	});
 
 	const formatDate = (date: any) => {
 		if (!date) return undefined;
@@ -82,7 +106,7 @@
 				{blogpost.title}
 			</h1>
 			<div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-bold tracking-[0.18em] uppercase">
-				<span class="text-stark-white/60">{blogpost.views || 0} views</span>
+				<span class="text-stark-white/60">{formatViews(views)} views</span>
 				{#if postDate}
 					<span class="text-stark-white/40">
 						{new Date(postDate).toLocaleDateString('en-US', {

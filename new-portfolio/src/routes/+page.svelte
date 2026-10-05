@@ -4,6 +4,8 @@
 	import Modal from '$lib/components/ui/Modal.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import SEO from '$lib/components/SEO.svelte';
+	import RssLink from '$lib/components/ui/RssLink.svelte';
+	import { formatViews } from '$lib/views';
 
 	let { data } = $props<{
 		data: {
@@ -179,11 +181,14 @@
 
 	<!-- BLOG -->
 	<section class="flex flex-col border-2 border-t-0 border-stark-white bg-true-black p-8 sm:p-12">
-		<div class="flex items-center justify-between border-b-2 border-stark-white/25 pb-4">
+		<div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-stark-white/25 pb-4">
 			<h2 class="text-sm font-black tracking-[0.24em] uppercase">Transmissions</h2>
-			<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
-				Latest posts
-			</p>
+			<div class="flex items-center gap-4">
+				<p class="hidden text-xs font-bold tracking-[0.18em] text-stark-white/50 uppercase sm:block">
+					Latest posts
+				</p>
+				<RssLink />
+			</div>
 		</div>
 
 		{#if blogPosts.length > 0}
@@ -204,7 +209,7 @@
 						<span
 							class="views text-[10px] font-bold tracking-[0.18em] text-stark-white/50 uppercase"
 						>
-							{post.views ?? 0} views →
+							{formatViews(post.views)} views →
 						</span>
 					</a>
 				{/each}

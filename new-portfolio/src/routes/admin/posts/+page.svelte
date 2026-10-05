@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getPosts, deletePost } from '../data.remote';
+	import { formatViews } from '$lib/views';
 
 	let posts = $state<any[]>([]);
 	let loaded = $state(false);
@@ -39,7 +40,7 @@
 					<tr class="border-b-2 border-stark-white bg-true-black text-left text-xs font-bold tracking-[0.16em] text-stark-white uppercase">
 						<th class="px-5 py-4">Title</th>
 						<th class="hidden px-5 py-4 sm:table-cell">Slug</th>
-						<th class="hidden px-5 py-4 md:table-cell">Views</th>
+						<th class="hidden px-5 py-4 sm:table-cell">Views</th>
 						<th class="hidden px-5 py-4 md:table-cell">Created</th>
 						<th class="px-5 py-4 text-right">Actions</th>
 					</tr>
@@ -49,7 +50,7 @@
 						<tr class="border-b border-stark-white/15 last:border-b-0 hover:bg-true-black">
 							<td class="px-5 py-4 font-bold text-stark-white">{post.title}</td>
 							<td class="hidden px-5 py-4 text-stark-white/50 sm:table-cell">{post.slug}</td>
-							<td class="hidden px-5 py-4 text-stark-white/50 md:table-cell">{post.views ?? 0}</td>
+							<td class="hidden px-5 py-4 text-stark-white/50 sm:table-cell">{formatViews(post.views)}</td>
 							<td class="hidden px-5 py-4 text-stark-white/50 md:table-cell">
 								{post.createdAt ? new Date(post.createdAt).toLocaleDateString() : '—'}
 							</td>
