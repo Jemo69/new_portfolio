@@ -3,7 +3,7 @@
 	import BlogContent from '$lib/components/ui/BlogContent.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { recordView } from '../data.remote';
-	import { claimView, formatViews } from '$lib/views';
+	import { claimView, formatViews, getSessionId } from '$lib/views';
 
 	interface PostType {
 		title: string;
@@ -36,7 +36,9 @@
 		// request is made and the server count stays untouched.
 		if (!claimView(slug)) return;
 
-		recordView({ slug }).then((result) => {
+		// The session id rides along so the server can classify this as a first
+		// read or a reread instead of trusting the raw increment.
+		recordView({ slug, sessionId: getSessionId() }).then((result) => {
 			if (result.views !== null) syncedViews = result.views;
 		});
 	});

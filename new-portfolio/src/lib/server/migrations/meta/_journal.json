@@ -36,6 +36,13 @@
       "when": 1775932833877,
       "tag": "0004_lucky_purifiers",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1791466999236,
+      "tag": "0005_magical_kulan_gath",
+      "breakpoints": true
     }
   ]
 }

@@ -91,6 +91,12 @@
 			>
 				View messages
 			</a>
+			<a
+				href="/admin/analytics"
+				class="border-2 border-stark-white bg-true-black px-5 py-3 text-sm font-bold tracking-[0.16em] text-stark-white uppercase transition-colors duration-150 hover:bg-stark-white hover:text-true-black"
+			>
+				Reads vs rereads
+			</a>
 		</div>
 	</div>
 {/if}

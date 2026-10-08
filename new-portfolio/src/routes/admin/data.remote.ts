@@ -1,7 +1,7 @@
 import { query, command } from "$app/server";
 import { db } from "$lib/server/db";
-import { blog, contact } from "$lib/server/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { blog, contact, postView } from "$lib/server/db/schema";
+import { eq, desc, sql } from "drizzle-orm";
 import { z } from "zod";
 
 export const getPosts = query(async () => {
@@ -47,4 +47,53 @@ export const deletePost = command(deletePostSchema, async (input) => {
 
 export const getContacts = query(async () => {
 	return db.select().from(contact).orderBy(desc(contact.id));
+});
+
+/**
+ * Reads vs rereads. `post_view` holds one row per (post, session), so counting
+ * rows per slug gives unique readers, and `blog.rereads` gives how many of the
+ * views were repeats.
+ */
+export const getAnalytics = query(async () => {
+	const posts = await db.select().from(blog).orderBy(desc(blog.views));
+
+	const readersPerSlug = await db
+		.select({ slug: postView.slug, readers: sql<number>`count(*)` })
+		.from(postView)
+		.groupBy(postView.slug);
+
+	const readers = new Map(readersPerSlug.map((row) => [row.slug, Number(row.readers)]));
+
+	const [unique] = await db
+		.select({ readers: sql<number>`count(distinct ${postView.sessionId})` })
+		.from(postView);
+
+	let views = 0;
+	let rereads = 0;
+
+	const rows = posts.map((post) => {
+		const postViews = post.views ?? 0;
+		const postRereads = post.rereads ?? 0;
+		views += postViews;
+		rereads += postRereads;
+		return {
+			slug: post.slug,
+			title: post.title ?? post.slug,
+			views: postViews,
+			rereads: postRereads,
+			// A view that is not a reread was a distinct reader's first read.
+			reads: postViews - postRereads,
+			readers: readers.get(post.slug) ?? 0
+		};
+	});
+
+	return {
+		posts: rows,
+		totals: {
+			views,
+			reads: views - rereads,
+			rereads,
+			uniqueReaders: Number(unique?.readers ?? 0)
+		}
+	};
 });

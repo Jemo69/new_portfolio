@@ -28,6 +28,14 @@
 					Posts
 				</a>
 				<a
+					href="/admin/analytics"
+					class="border-2 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase transition-colors duration-150 {String($page.url.pathname) === '/admin/analytics'
+						? 'border-stark-white bg-stark-white text-true-black'
+						: 'border-transparent text-stark-white hover:border-stark-white'}"
+				>
+					Analytics
+				</a>
+				<a
 					href="/admin/contacts"
 					class="border-2 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase transition-colors duration-150 {String($page.url.pathname) === '/admin/contacts'
 						? 'border-stark-white bg-stark-white text-true-black'
